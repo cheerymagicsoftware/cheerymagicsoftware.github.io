@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Cheerymagicsoftware official page on Cheerymagicsoftware official page </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>https://cheerymagicsoftware.github.io/index.xml</link>
+    <language>en-us</language>
+    
+    
+    <updated>Tue, 28 Feb 2017 14:20:23 EET</updated>
+    
+    <item>
+      <title>EAV (Entity-Attribute-Value) entity attributes in Magento 2.</title>
+      <link>https://cheerymagicsoftware.github.io/post/mage-2-eav/</link>
+      <pubDate>Tue, 28 Feb 2017 14:20:23 EET</pubDate>
+      
+      <guid>https://cheerymagicsoftware.github.io/post/mage-2-eav/</guid>
+      <description>&lt;p&gt;In conventional systems, we&amp;rsquo;ve learned that to add new attributes in entity we follow the classical route. In the table of our entity, we just add the field with value of our new attribute, describe it in the model and use.&lt;/p&gt;
+
+&lt;p&gt;If  we&amp;rsquo;ll go the classic way in Magento and add fields to the tables of entities, then we have a lot of work - this is use in search, display in the frontend, display in the admin backend (grids and edit mode) and so on. Accordingly, the possible bugs in the work.&lt;/p&gt;
+
+&lt;p&gt;The Magento 2  is designed so flexibly that the developer needs to add new attributes to the entities programmatically. But, for example, if the Product and Category entities have visual add / edit mode in the admin area, then such entity as the Customer, Customer Address &amp;hellip; that can be done programmatically. Actually, let&amp;rsquo;s add to the Customer Address  &amp;ldquo;Delivery Instruction&amp;rdquo; attribute.&lt;/p&gt;
+
+&lt;p&gt;Create a file structure of the module:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://cheerymagicsoftware.github.io/images/structure.png&#34; alt=&#34;project structure&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;registration.php&lt;/p&gt;
+
+&lt;pre&gt;
+
+    &lt;code class=&#34;language-php&#34;&gt;    &amp;lt;?php
+         \Magento\Framework\Component\ComponentRegistrar::register(
+        \Magento\Framework\Component\ComponentRegistrar::MODULE,
+        &#39;CheeryMagic_CustomerAddress&#39;,
+        __DIR__
+    );&lt;/code&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;composer.json&lt;/p&gt;
+
+&lt;pre&gt;
+
+&lt;code class=&#34;language-json&#34;&gt;    {
+        &#34;name&#34;: &#34;cheerymagic/module-customeraddress&#34;,
+        &#34;description&#34;: &#34;Add attribute to Customer Address Entity&#34;,
+        &#34;license&#34;: &#34;&#34;,
+        &#34;authors&#34;: [
+            {
+                &#34;name&#34;: &#34;CustomerAddressAttribute&#34;,
+                &#34;email&#34;: &#34;&#34;
+            }
+        ],
+        &#34;minimum-stability&#34;: &#34;dev&#34;,
+        &#34;require&#34;: {},
+        &#34;autoload&#34;: {
+            &#34;psr-4&#34;: {
+                &#34;CheeryMagic\\CustomerAddress\\&#34;: &#34;&#34;
+            },
+            &#34;files&#34;: [
+                &#34;registration.php&#34;
+            ]
+        }
+    }&lt;/code&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;module.xml&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class=&#34;language-html&#34;&gt;    &amp;lt;?xml version=&#34;1.0&#34; ?&amp;gt;
+    &lt;config xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xsi:noNamespaceSchemaLocation=&#34;urn:magento:framework:Module/etc/module.xsd&#34;&gt;
+        &amp;lt;module name=&#34;CheeryMagic_CustomerAddress&#34; setup_version=&#34;1.0.0&#34;/&amp;gt;
+    &lt;/config&gt;&lt;/code&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;extension_attributes.xml&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class=&#34;language-html&#34;&gt;    &amp;lt;?xml version=&#34;1.0&#34; ?&amp;gt;
+    &amp;lt;config xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xsi:noNamespaceSchemaLocation=&#34;urn:magento:framework:Api/etc/extension_attributes.xsd&#34;&amp;gt;
+        &amp;lt;extension_attributes for=&#34;Magento\Customer\Api\Data\AddressInterface&#34;&amp;gt;
+           &amp;lt;attribute code=&#34;delivery_instructions&#34; type=&#34;string&#34;/&amp;gt;
+        &amp;lt;/extension_attributes&amp;gt;
+    &amp;lt;/config&amp;gt;&lt;/code&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;InstallData.php&lt;/p&gt;
+
+&lt;pre&gt;
+
+&lt;code class=&#34;language-php&#34;&gt;    &amp;lt;?php
+
+    namespace CheeryMagic\CustomerAddress\Setup;
+
+    use Magento\Framework\Setup\InstallDataInterface;
+    use Magento\Framework\Setup\ModuleContextInterface;
+    use Magento\Framework\Setup\ModuleDataSetupInterface;
+    use Magento\Customer\Setup\CustomerSetupFactory;
+
+    class InstallData implements InstallDataInterface
+    {
+
+        private $customerSetupFactory;
+
+        /**
+         * Constructor
+         *
+         * @param \Magento\Customer\Setup\CustomerSetupFactory $customerSetupFactory
+         */
+        public function __construct(
+            CustomerSetupFactory $customerSetupFactory
+        ) {
+            $this-&gt;customerSetupFactory = $customerSetupFactory;
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function install(
+            ModuleDataSetupInterface $setup,
+            ModuleContextInterface $context
+        ) {
+            $customerSetup = $this-&gt;customerSetupFactory-&gt;create([&#39;setup&#39; =&gt; $setup]);
+
+            $customerSetup-&gt;addAttribute(&#39;customer_address&#39;, &#39;delivery_instructions&#39;, [
+                &#39;label&#39; =&gt; &#39;Delivery Instructions&#39;,
+                &#39;input&#39; =&gt; &#39;text&#39;,
+                &#39;type&#39; =&gt; &#39;varchar&#39;,
+                &#39;source&#39; =&gt; &#39;&#39;,
+                &#39;required&#39; =&gt; true,
+                &#39;position&#39; =&gt; 400,
+                &#39;visible&#39; =&gt; true,
+                &#39;system&#39; =&gt; false,
+                &#39;is_used_in_grid&#39; =&gt; false,
+                &#39;is_visible_in_grid&#39; =&gt; false,
+                &#39;is_filterable_in_grid&#39; =&gt; false,
+                &#39;is_searchable_in_grid&#39; =&gt; false,
+                &#39;backend&#39; =&gt; &#39;&#39;
+            ]);
+
+
+            $attribute = $customerSetup-&gt;getEavConfig()-&gt;getAttribute(&#39;customer_address&#39;, &#39;delivery_instructions&#39;)
+                -&gt;addData([&#39;used_in_forms&#39; =&gt; [
+                    &#39;adminhtml_customer_address&#39;,
+                    &#39;customer_address_edit&#39;,
+                    &#39;customer_register_address&#39;
+                ]]);
+            $attribute-&gt;save();
+        }
+    }&lt;/code&gt;
+    &lt;/pre&gt;
+
+&lt;p&gt;UpgradeData.php&lt;/p&gt;
+
+&lt;pre&gt;
+
+&lt;code class=&#34;language-php&#34;&gt;    &amp;lt;?php
+
+    namespace CheeryMagic\CustomerAddress\Setup;
+
+    use Magento\Framework\Setup\UpgradeDataInterface;
+    use Magento\Framework\Setup\ModuleContextInterface;
+    use Magento\Framework\Setup\ModuleDataSetupInterface;
+    use Magento\Customer\Setup\CustomerSetupFactory;
+
+    class UpgradeData implements UpgradeDataInterface
+    {
+
+        private $customerSetupFactory;
+
+        /**
+         * Constructor
+         *
+         * @param \Magento\Customer\Setup\CustomerSetupFactory $customerSetupFactory
+         */
+        public function __construct(
+            CustomerSetupFactory $customerSetupFactory
+        ) {
+            $this-&gt;customerSetupFactory = $customerSetupFactory;
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function upgrade(
+            ModuleDataSetupInterface $setup,
+            ModuleContextInterface $context
+        )
+        {
+            $customerSetup = $this-&gt;customerSetupFactory-&gt;create([&#39;setup&#39; =&gt; $setup]);
+
+            $customerSetup-&gt;addAttribute(&#39;customer_address&#39;,                &#39;delivery_instructions&#39;, [
+                &#39;label&#39; =&gt; &#39;Delivery Instructions&#39;,
+                &#39;input&#39; =&gt; &#39;text&#39;,
+                &#39;type&#39; =&gt; &#39;varchar&#39;,
+                &#39;source&#39; =&gt; &#39;&#39;,
+                &#39;required&#39; =&gt; true,
+                &#39;position&#39; =&gt; 400,
+                &#39;visible&#39; =&gt; true,
+                &#39;system&#39; =&gt; false,
+                &#39;is_used_in_grid&#39; =&gt; false,
+                &#39;is_visible_in_grid&#39; =&gt; false,
+                &#39;is_filterable_in_grid&#39; =&gt; false,
+                &#39;is_searchable_in_grid&#39; =&gt; false,
+                &#39;backend&#39; =&gt; &#39;&#39;
+            ]);
+
+
+            $attribute = $customerSetup-&gt;getEavConfig()-&gt;getAttribute(&#39;customer_address&#39;, &#39;delivery_instructions&#39;)
+                -&gt;addData([&#39;used_in_forms&#39; =&gt; [
+                    &#39;adminhtml_customer_address&#39;,
+                    &#39;customer_address_edit&#39;,
+                    &#39;customer_register_address&#39;
+                ]]);
+            $attribute-&gt;save();
+        }
+    }&lt;/code&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;Upgrade our module.xml to 1.0.1&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class=&#34;language-html&#34;&gt;    &amp;lt;?xml version=&#34;1.0&#34; ?&amp;gt;
+    &lt;config xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xsi:noNamespaceSchemaLocation=&#34;urn:magento:framework:Module/etc/module.xsd&#34;&gt;
+        &amp;lt;module name=&#34;CheeryMagic_CustomerAddress&#34; setup_version=&#34;1.0.1&#34;/&amp;gt;
+    &lt;/config&gt;&lt;/code&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;Run command in console:
+php bin/magento setup:upgrade&lt;/p&gt;
+
+&lt;p&gt;Go to Admin-&amp;gt;Customers-&amp;gt;All Customers-&amp;gt;edit and see next:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://cheerymagicsoftware.github.io/images/admin_view.png&#34; alt=&#34;admin view&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ve created new custom field &amp;ldquo;Delivery Instruction&amp;rdquo;. In fronted you may work with it programmatically.&lt;/p&gt;
+
+&lt;pre&gt;
+
+&lt;code class=&#34;language-php&#34;&gt;    &amp;lt;?php
+    $this-&gt;_address = $this-&gt;_addressRepository-&gt;getById($addressId);
+    $block-&gt;getAddress()-&gt;getCustomAttribute(&#39;delivery_instructions&#39;);
+    $block-&gt;getAddress()-&gt;setCustomAttribute(&#39;delivery_instructions&#39;, &#39;My custom Delivery Intruction&#39;);&lt;/code&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;For more information on EAV and extension attributes are available on the official page:
+&lt;a class=&#34;magento2-link&#34; href=&#34;http://devdocs.magento.com/guides/v2.0/extension-dev-guide/attributes.html&#34;&gt;
+    &lt;a href=&#34;http://devdocs.magento.com/guides/v2.0/extension-dev-guide/attributes.html&#34;&gt;http://devdocs.magento.com/guides/v2.0/extension-dev-guide/attributes.html&lt;/a&gt;
+&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>About us</title>
+      <link>https://cheerymagicsoftware.github.io/about-us/</link>
+      <pubDate>Tue, 28 Feb 2017 12:21:20 EET</pubDate>
+      
+      <guid>https://cheerymagicsoftware.github.io/about-us/</guid>
+      <description>&lt;p&gt;We are group of backend php developers.
+Currently we have some projects, but we can spend our time for remote projects in freelance part time.
+We are situated in Ukraine.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Our specialization:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Backend:&lt;br&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;PHP&lt;/strong&gt;: Magento 2, Yii, Yii 2,  Joomla CMS, PrestaShop, Kohana, Plain PHP.&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Web Solutions:&lt;/strong&gt;
+E-stores, Real Estate Sites,  Payment system integranion, FaceBook applications, Business card sites, Mobile Web Applications, REST API, Sphinx&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Work with Frontend:&lt;br&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;JQuery, jQuery Mobile, JS templite frameworks, AJAX, CSS, Responsive Design, Twitter Bootstrap&lt;/p&gt;
+
+&lt;p&gt;We are happy to answer your questions. &lt;a href=&#34;mailto:cheerymagicsoftware@gmail.com&#34;&gt;cheerymagicsoftware@gmail.com&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>welcome</title>
+      <link>https://cheerymagicsoftware.github.io/post/welcome/</link>
+      <pubDate>Fri, 03 Feb 2017 14:20:23 EET</pubDate>
+      
+      <guid>https://cheerymagicsoftware.github.io/post/welcome/</guid>
+      <description>&lt;h1&gt;Hello World2&lt;/h1&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

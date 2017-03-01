@@ -1,0 +1,374 @@
+  <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title> EAV (Entity-Attribute-Value) entity attributes in Magento 2. &middot; Cheerymagicsoftware official page </title>
+    
+    <link rel="stylesheet" type="text/css" href="https://cheerymagicsoftware.github.io//css/uno.min.css" />
+    
+    
+    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Cheerymagicsoftware official page" />
+    
+    <script src="https://cheerymagicsoftware.github.io//js/jquery.min.js"></script>
+    <script src="https://cheerymagicsoftware.github.io//js/main.min.js"></script>
+
+    
+    <script src="https://cheerymagicsoftware.github.io//js/rainbow-custom.min.js"></script>
+    
+    
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-92531543-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+    
+</head>
+
+  <body>
+    <div id="scriptHeader">
+    <span class="mobile btn-mobile-menu">
+            <i class="fa fa-bars btn-mobile-menu__icon"></i>
+            <i class="fa fa-times btn-mobile-close__icon hidden"> </i>
+    </span>
+    <header class="
+        
+            panel-cover panel-cover--collapsed
+        " >
+    <div class="panel-main">
+        <div class="panel-main__inner panel-inverted">
+            <div class="panel-main__content"> 
+                <h1 class="panel-cover__title panel-title">
+                    <a href="https://cheerymagicsoftware.github.io//"  title="link to homepage for Cheerymagicsoftware official page">Cheerymagicsoftware official page</a>
+                </h1>
+                <hr class="panel-cover__divider" />
+                <p class="panel-cover__description">  Programming is a cheery magic!  </p>
+                <hr class="panel-cover__divider panel-cover__divider--secondary" />
+                <div class="navigation-wrapper">
+                    <nav class="cover-navigation cover-navigation--primary">
+                        <ul class="navigation">
+                            <li class="navigation__item"><a href="https://cheerymagicsoftware.github.io/#blog" title="link to Cheerymagicsoftware official page blog" class="blog-button">Blog</a> </li></br>
+                            <li class="navigation__item"><a href="https://cheerymagicsoftware.github.io//about-us" title="link to Cheerymagicsoftware official page blog" class="blog-button">About Us</a> </li></br>
+                            
+                            
+                       </ul>
+                    </nav> <nav class="cover-navigation navigation--social">
+    <ul class="navigation">    </br>    </ul>
+</nav>
+ </div>
+            </div>
+        </div>
+        <div class="panel-cover--overlay"></div>
+    </div>
+</header>
+</div>
+<noscript>
+    <style>
+        #scriptHeader {display:none;}
+        .navigation-wrapper{
+            display: block;
+            top: 0;
+        }
+    </style>
+
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url()">
+        <div class="panel-main">
+            <div class="panel-main__inner panel-inverted">
+                <div class="panel-main__content"> 
+                    <h1 class="panel-cover__title panel-title">
+                        <a href="https://cheerymagicsoftware.github.io//"  title="link to homepage for Cheerymagicsoftware official page">Cheerymagicsoftware official page</a>
+                    </h1>
+                    <hr class="panel-cover__divider" />
+                    <p class="panel-cover__description">  This site is built using <a href="http://gohugo.io">hugo</a> and the theme is built by <a href="http://fredrikloch.me">Fredrik</a> if you enjoy it, it is available at <a href="https://github.com/SenjinDarashiva/hugo-uno">github</a>  </p>
+                    <hr class="panel-cover__divider panel-cover__divider--secondary" />
+                    <div class="navigation-wrapper">
+                        <nav class="cover-navigation cover-navigation--primary">
+                            <ul class="navigation">
+                                <li class="navigation__item"><a href="https://cheerymagicsoftware.github.io//#blog" title="link to Cheerymagicsoftware official page blog" class="blog-button">Blog</a> </li></br>
+                                
+                                
+                           </ul>
+                        </nav> <nav class="cover-navigation navigation--social">
+    <ul class="navigation">    </br>    </ul>
+</nav>
+ </div>
+                </div>
+            </div>
+            <div class="panel-cover--overlay"></div>
+        </div>
+    </header>
+</noscript>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <div class="post">
+          <h1>EAV (Entity-Attribute-Value) entity attributes in Magento 2.</h1>
+          <span class="post-date">Tue, Feb 28, 2017</span>
+          <p>In conventional systems, we&rsquo;ve learned that to add new attributes in entity we follow the classical route. In the table of our entity, we just add the field with value of our new attribute, describe it in the model and use.</p>
+
+<p>If  we&rsquo;ll go the classic way in Magento and add fields to the tables of entities, then we have a lot of work - this is use in search, display in the frontend, display in the admin backend (grids and edit mode) and so on. Accordingly, the possible bugs in the work.</p>
+
+<p>The Magento 2  is designed so flexibly that the developer needs to add new attributes to the entities programmatically. But, for example, if the Product and Category entities have visual add / edit mode in the admin area, then such entity as the Customer, Customer Address &hellip; that can be done programmatically. Actually, let&rsquo;s add to the Customer Address  &ldquo;Delivery Instruction&rdquo; attribute.</p>
+
+<p>Create a file structure of the module:</p>
+
+<p><img src="/images/structure.png" alt="project structure" /></p>
+
+<p>registration.php</p>
+
+<pre>
+
+    <code class="language-php">    &lt;?php
+         \Magento\Framework\Component\ComponentRegistrar::register(
+        \Magento\Framework\Component\ComponentRegistrar::MODULE,
+        'CheeryMagic_CustomerAddress',
+        __DIR__
+    );</code>
+</pre>
+
+<p>composer.json</p>
+
+<pre>
+
+<code class="language-json">    {
+        "name": "cheerymagic/module-customeraddress",
+        "description": "Add attribute to Customer Address Entity",
+        "license": "",
+        "authors": [
+            {
+                "name": "CustomerAddressAttribute",
+                "email": ""
+            }
+        ],
+        "minimum-stability": "dev",
+        "require": {},
+        "autoload": {
+            "psr-4": {
+                "CheeryMagic\\CustomerAddress\\": ""
+            },
+            "files": [
+                "registration.php"
+            ]
+        }
+    }</code>
+</pre>
+
+<p>module.xml</p>
+
+<pre>
+<code class="language-html">    &lt;?xml version="1.0" ?&gt;
+    <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+        &lt;module name="CheeryMagic_CustomerAddress" setup_version="1.0.0"/&gt;
+    </config></code>
+</pre>
+
+<p>extension_attributes.xml</p>
+
+<pre>
+<code class="language-html">    &lt;?xml version="1.0" ?&gt;
+    &lt;config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd"&gt;
+        &lt;extension_attributes for="Magento\Customer\Api\Data\AddressInterface"&gt;
+           &lt;attribute code="delivery_instructions" type="string"/&gt;
+        &lt;/extension_attributes&gt;
+    &lt;/config&gt;</code>
+</pre>
+
+<p>InstallData.php</p>
+
+<pre>
+
+<code class="language-php">    &lt;?php
+
+    namespace CheeryMagic\CustomerAddress\Setup;
+
+    use Magento\Framework\Setup\InstallDataInterface;
+    use Magento\Framework\Setup\ModuleContextInterface;
+    use Magento\Framework\Setup\ModuleDataSetupInterface;
+    use Magento\Customer\Setup\CustomerSetupFactory;
+
+    class InstallData implements InstallDataInterface
+    {
+
+        private $customerSetupFactory;
+
+        /**
+         * Constructor
+         *
+         * @param \Magento\Customer\Setup\CustomerSetupFactory $customerSetupFactory
+         */
+        public function __construct(
+            CustomerSetupFactory $customerSetupFactory
+        ) {
+            $this->customerSetupFactory = $customerSetupFactory;
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function install(
+            ModuleDataSetupInterface $setup,
+            ModuleContextInterface $context
+        ) {
+            $customerSetup = $this->customerSetupFactory->create(['setup' => $setup]);
+
+            $customerSetup->addAttribute('customer_address', 'delivery_instructions', [
+                'label' => 'Delivery Instructions',
+                'input' => 'text',
+                'type' => 'varchar',
+                'source' => '',
+                'required' => true,
+                'position' => 400,
+                'visible' => true,
+                'system' => false,
+                'is_used_in_grid' => false,
+                'is_visible_in_grid' => false,
+                'is_filterable_in_grid' => false,
+                'is_searchable_in_grid' => false,
+                'backend' => ''
+            ]);
+
+
+            $attribute = $customerSetup->getEavConfig()->getAttribute('customer_address', 'delivery_instructions')
+                ->addData(['used_in_forms' => [
+                    'adminhtml_customer_address',
+                    'customer_address_edit',
+                    'customer_register_address'
+                ]]);
+            $attribute->save();
+        }
+    }</code>
+    </pre>
+
+<p>UpgradeData.php</p>
+
+<pre>
+
+<code class="language-php">    &lt;?php
+
+    namespace CheeryMagic\CustomerAddress\Setup;
+
+    use Magento\Framework\Setup\UpgradeDataInterface;
+    use Magento\Framework\Setup\ModuleContextInterface;
+    use Magento\Framework\Setup\ModuleDataSetupInterface;
+    use Magento\Customer\Setup\CustomerSetupFactory;
+
+    class UpgradeData implements UpgradeDataInterface
+    {
+
+        private $customerSetupFactory;
+
+        /**
+         * Constructor
+         *
+         * @param \Magento\Customer\Setup\CustomerSetupFactory $customerSetupFactory
+         */
+        public function __construct(
+            CustomerSetupFactory $customerSetupFactory
+        ) {
+            $this->customerSetupFactory = $customerSetupFactory;
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function upgrade(
+            ModuleDataSetupInterface $setup,
+            ModuleContextInterface $context
+        )
+        {
+            $customerSetup = $this->customerSetupFactory->create(['setup' => $setup]);
+
+            $customerSetup->addAttribute('customer_address',                'delivery_instructions', [
+                'label' => 'Delivery Instructions',
+                'input' => 'text',
+                'type' => 'varchar',
+                'source' => '',
+                'required' => true,
+                'position' => 400,
+                'visible' => true,
+                'system' => false,
+                'is_used_in_grid' => false,
+                'is_visible_in_grid' => false,
+                'is_filterable_in_grid' => false,
+                'is_searchable_in_grid' => false,
+                'backend' => ''
+            ]);
+
+
+            $attribute = $customerSetup->getEavConfig()->getAttribute('customer_address', 'delivery_instructions')
+                ->addData(['used_in_forms' => [
+                    'adminhtml_customer_address',
+                    'customer_address_edit',
+                    'customer_register_address'
+                ]]);
+            $attribute->save();
+        }
+    }</code>
+</pre>
+
+<p>Upgrade our module.xml to 1.0.1</p>
+
+<pre>
+<code class="language-html">    &lt;?xml version="1.0" ?&gt;
+    <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+        &lt;module name="CheeryMagic_CustomerAddress" setup_version="1.0.1"/&gt;
+    </config></code>
+</pre>
+
+<p>Run command in console:
+php bin/magento setup:upgrade</p>
+
+<p>Go to Admin-&gt;Customers-&gt;All Customers-&gt;edit and see next:</p>
+
+<p><img src="/images/admin_view.png" alt="admin view" /></p>
+
+<p>We&rsquo;ve created new custom field &ldquo;Delivery Instruction&rdquo;. In fronted you may work with it programmatically.</p>
+
+<pre>
+
+<code class="language-php">    &lt;?php
+    $this->_address = $this->_addressRepository->getById($addressId);
+    $block->getAddress()->getCustomAttribute('delivery_instructions');
+    $block->getAddress()->setCustomAttribute('delivery_instructions', 'My custom Delivery Intruction');</code>
+</pre>
+
+<p>For more information on EAV and extension attributes are available on the official page:
+<a class="magento2-link" href="http://devdocs.magento.com/guides/v2.0/extension-dev-guide/attributes.html">
+    <a href="http://devdocs.magento.com/guides/v2.0/extension-dev-guide/attributes.html">http://devdocs.magento.com/guides/v2.0/extension-dev-guide/attributes.html</a>
+</a></p>
+
+        </div>
+        <div class="sharing">
+<a href="https://twitter.com/intent/tweet?status=EAV%20%28Entity-Attribute-Value%29%20entity%20attributes%20in%20Magento%202.-https%3a%2f%2fcheerymagicsoftware.github.io%2fpost%2fmage-2-eav%2f" target="_blank" title="Follow me on Twitter" class="twitter">
+<span class="fa fa-twitter-square fa-3x"></span></a>
+<a href="https://www.facebook.com/sharer/sharer.php?src=https%3a%2f%2fcheerymagicsoftware.github.io%2fpost%2fmage-2-eav%2f" target="_blank" title="Join me on Facebook" class="facebook">
+<span class="fa fa-facebook-square fa-3x"></span></a>
+<a href="https://plus.google.com/share?url=https%3a%2f%2fcheerymagicsoftware.github.io%2fpost%2fmage-2-eav%2f" target="_blank" title="Google+" class="googleplus">
+<span class="fa fa-google-plus-square fa-3x"></span></a>
+<a href="http://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fcheerymagicsoftware.github.io%2fpost%2fmage-2-eav%2f&title=EAV%20%28Entity-Attribute-Value%29%20entity%20attributes%20in%20Magento%202." target="_blank" title="LinkedIn" class="linkedin">
+<span class="fa fa-linkedin-square fa-3x"></span></a>
+<a href="http://www.reddit.com/submit?url=https%3a%2f%2fcheerymagicsoftware.github.io%2fpost%2fmage-2-eav%2f" target="_blank" title="Reddit" class="reddit"><span class="fa fa-reddit-square fa-3x"></span></a>
+<a href="http://www.stumbleupon.com/submit?url=https%3a%2f%2fcheerymagicsoftware.github.io%2fpost%2fmage-2-eav%2f" target="_blank" title="StumbleUpon" class="stumbleupon"><span class="fa fa-stumbleupon fa-3x">
+</span></a>
+</div>
+        
+
+
+
+      </div>
+    </div>
+
+  </body>
+  
+</html>
