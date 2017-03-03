@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://cheerymagicsoftware.github.io/post/mage-2-repositories-and-facktories/</loc>
+    <lastmod>2017-03-03T14:52:12+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://cheerymagicsoftware.github.io/post/mage-2-eav/</loc>
     <lastmod>2017-02-28T14:20:23+02:00</lastmod>
   </url>
@@ -18,13 +23,7 @@
   
   <url>
     <loc>https://cheerymagicsoftware.github.io/</loc>
-    <lastmod>2017-02-28T14:20:23+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://cheerymagicsoftware.github.io/tags/development/</loc>
-    <lastmod>2017-02-28T12:21:20+02:00</lastmod>
+    <lastmod>2017-03-03T14:52:12+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -35,7 +34,7 @@
   </url>
   
   <url>
-    <loc>https://cheerymagicsoftware.github.io/tags/golang/</loc>
+    <loc>https://cheerymagicsoftware.github.io/tags/development/</loc>
     <lastmod>2017-02-28T12:21:20+02:00</lastmod>
     <priority>0</priority>
   </url>
@@ -47,8 +46,14 @@
   </url>
   
   <url>
+    <loc>https://cheerymagicsoftware.github.io/tags/golang/</loc>
+    <lastmod>2017-02-28T12:21:20+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://cheerymagicsoftware.github.io/post/</loc>
-    <lastmod>2017-02-28T14:20:23+02:00</lastmod>
+    <lastmod>2017-03-03T14:52:12+02:00</lastmod>
     <priority>0</priority>
   </url>
   

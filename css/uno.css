@@ -2340,7 +2340,7 @@ div.post h1 {
 .panel-title {
   font-family: Tahoma;
   margin: 0 0 5px 0;
-  font-size: 2.5em;
+  font-size: 2.1em;
   letter-spacing: 4px;
   color: #FFF; }
 
@@ -2730,7 +2730,7 @@ nav {
 
   .panel-title {
     margin-bottom: .1em;
-    font-size: 1.5em; }
+    font-size: 1.3em; }
 
   .panel-subtitle {
     font-size: .9em; }
@@ -2752,3 +2752,9 @@ nav {
 .magento2-link {
   color: #0081F5;
 }
+.post h1 {
+  font-size: 2.2em;
+}
+ div.post p a {
+   color: #6d79de;
+ }

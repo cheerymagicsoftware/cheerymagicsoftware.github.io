@@ -7,7 +7,82 @@
     <language>en-us</language>
     
     
-    <updated>Tue, 28 Feb 2017 14:20:23 EET</updated>
+    <updated>Fri, 03 Mar 2017 14:52:12 EET</updated>
+    
+    <item>
+      <title>Magento 2 Repositories and Factories</title>
+      <link>https://cheerymagicsoftware.github.io/post/mage-2-repositories-and-facktories/</link>
+      <pubDate>Fri, 03 Mar 2017 14:52:12 EET</pubDate>
+      
+      <guid>https://cheerymagicsoftware.github.io/post/mage-2-repositories-and-facktories/</guid>
+      <description>&lt;p&gt;As a continuation of the previous &lt;a href=&#34;https://cheerymagicsoftware.github.io/post/mage-2-eav/&#34;&gt;post&lt;/a&gt;, let&amp;rsquo;s talk about repositories and factories.  Many entities in Magento 2 such as the product, category customer, address, quote, order, and others  for &amp;ldquo;CRUD&amp;rdquo; operation, better use of the repository and factory. If the version of Magento 2.1 to be able to work directly with the methods AbstractModel load, save, delete:&lt;/p&gt;
+
+&lt;pre&gt;
+
+    &lt;code class=&#34;language-php&#34;&gt;    &amp;lt;?php
+    $address_id = 5;
+    $customer_id = 5;
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance;
+    $address = $objectManager-&gt;create(&#39;\Magento\Customer\Model\Address&#39;);// Bad practice! Load classes over constuctor! It&#39;s only for example.
+
+    $address-&gt;load($address_id);
+
+    $address-&gt;setCustomerId($customer_id)
+        -&gt;setCountryId(&#39;US&#39;)
+        -&gt;setFirstname($this-&gt;getRequest()-&gt;getPostValue(&#39;firstname&#39;))
+        -&gt;setLastname($this-&gt;getRequest()-&gt;getPostValue(&#39;lastname&#39;))
+        -&gt;setTelephone($this-&gt;getRequest()-&gt;getPostValue(&#39;telephone&#39;));
+    //You can&#39;t get/set custom attributes for EAV, because AbstractModel Class don&#39;t have repo.
+
+    $address-&gt;save();&lt;/code&gt;
+
+&lt;/pre&gt;
+
+&lt;p&gt;That they are now is deprecated, so that if you use these methods, the further upgrade version of Magento at your own risk:&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color:#6d79de;&#34;&gt;&lt;a style=&#34;color:#6d79de;&#34; href=&#34;http://devdocs.magento.com/guides/v2.1/extension-dev-guide/persistent-entities.html#models&#34;&gt;&lt;a href=&#34;http://devdocs.magento.com/guides/v2.1/extension-dev-guide/persistent-entities.html#models&#34;&gt;http://devdocs.magento.com/guides/v2.1/extension-dev-guide/persistent-entities.html#models&lt;/a&gt;&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;pre&gt;
+
+    &lt;code class=&#34;language-php&#34;&gt;    &amp;lt;?php
+    $address_id = 5;
+    $customer_id = 5;
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance;
+    $addressRepo = $objectManager-&gt;create(&#39;\Magento\Customer\Api\AddressRepositoryInterface&#39;);// Bad practice! Load classes over constuctor! It&#39;s only for example.
+
+    $address = $addressRepo-&gt;getById($address_id);
+    $address-&gt;setCustomerId($customer_id)
+        -&gt;setCountryId(&#39;US&#39;)
+        -&gt;setFirstname($this-&gt;getRequest()-&gt;getPostValue(&#39;firstname&#39;))
+        -&gt;setLastname($this-&gt;getRequest()-&gt;getPostValue(&#39;lastname&#39;))
+        -&gt;setTelephone($this-&gt;getRequest()-&gt;getPostValue(&#39;telephone&#39;));
+    $address-&gt;setCustomAttribute(&#39;delivery_instructions&#39;, &#39;My custom Delivery Intruction&#39;); //You can get/set custom attributes.
+    $addressRepo-&gt;save($address);&lt;/code&gt;
+
+&lt;/pre&gt;
+
+&lt;p&gt;And if you&amp;rsquo;re going to add a new address through the repository, then you need create a new instance through the factory:&lt;/p&gt;
+
+&lt;pre&gt;
+
+    &lt;code class=&#34;language-php&#34;&gt;    &amp;lt;?php
+    //...
+    $address = $objectManager-&gt;create(&#39;\Magento\Customer\Api\Data\AddressInterfaceFactory&#39;);
+    $address-&gt;setCustomerId($customer_id)
+        -&gt;setCountryId(&#39;US&#39;)
+        -&gt;setFirstname($this-&gt;getRequest()-&gt;getPostValue(&#39;firstname&#39;))
+        -&gt;setLastname($this-&gt;getRequest()-&gt;getPostValue(&#39;lastname&#39;))
+        -&gt;setTelephone($this-&gt;getRequest()-&gt;getPostValue(&#39;telephone&#39;));
+    //Add needs data for new address entity
+    //...
+    $address-&gt;setCustomAttribute(&#39;delivery_instructions&#39;, &#39;My custom Delivery Intruction&#39;); //of course custom attribute.
+    $addressRepo-&gt;save($address);&lt;/code&gt;
+
+&lt;/pre&gt;
+
+&lt;p&gt;The repository has methods to remove at id and other methods. Implementation of methods repository&amp;rsquo;s interfaces are typically located in the resource model entities. For example, the implementation of &lt;span style=&#34;color:#6d79de;&#34;&gt;\Magento\Customer\Api\AddressRepositoryInterface&lt;/span&gt; is in  &lt;span style=&#34;color:#6d79de;&#34;&gt;Magento\Customer\Model\ResourceModel\AddressRepository&lt;/span&gt;.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>EAV (Entity-Attribute-Value) entity attributes in Magento 2.</title>
