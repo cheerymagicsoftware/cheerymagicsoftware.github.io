@@ -7,7 +7,337 @@
     <language>en-us</language>
     
     
-    <updated>Fri, 03 Mar 2017 14:52:12 EET</updated>
+    <updated>Wed, 15 Mar 2017 14:49:48 EET</updated>
+    
+    <item>
+      <title>Custom url for checkout and cart in Magento 2</title>
+      <link>https://cheerymagicsoftware.github.io/post/custom-url-for-checkout-and-cart/</link>
+      <pubDate>Wed, 15 Mar 2017 14:49:48 EET</pubDate>
+      
+      <guid>https://cheerymagicsoftware.github.io/post/custom-url-for-checkout-and-cart/</guid>
+      <description>&lt;p&gt;Suppose you need change checkout&amp;rsquo;s url  (&lt;span style=&#34;color:#6d79de;&#34;&gt;/checkout&lt;/span&gt; to &lt;span style=&#34;color:#6d79de;&#34;&gt;/customcheckout&lt;/span&gt;)  and cart (&lt;span style=&#34;color:#6d79de;&#34;&gt;/checkout/cart&lt;/span&gt; to &lt;span style=&#34;color:#6d79de;&#34;&gt;/customcheckout/basket&lt;/span&gt;)  in Magento 2 shop. The first thing that comes to mind use Url Rewrite Module (Admin-&amp;gt;Marketing-&amp;gt;Url Rewrites)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://cheerymagicsoftware.github.io/images/add-new-url-rewrite-magento-2.png&#34; alt=&#34;Add url rewrite in Magento 2&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For these two links need set Redirect type = &amp;ldquo;No&amp;rdquo; and redefine new links in your theme (suppose you can do it). During use will be that the collapses in the shipping or payment you will always return to the page &amp;ldquo;&lt;span style=&#34;color:#6d79de;&#34;&gt;checkout/cart&lt;/span&gt;&amp;rdquo; - this is hardcoded in Magento 2:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://cheerymagicsoftware.github.io/images/search-cart-in-vendor-magento-2.png&#34; alt=&#34;Search cart in vendor Magento 2&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Also &lt;span style=&#34;color:#6d79de;&#34;&gt;/customcheckout#shipping&lt;/span&gt; after estimate, you redirect to &lt;span style=&#34;color:#6d79de;&#34;&gt;checkout/#payment&lt;/span&gt;. So let&amp;rsquo;s make module, which by url define if &lt;span style=&#34;color:#6d79de;&#34;&gt;/customcheckout&lt;/span&gt; then needed load module &lt;span style=&#34;color:#6d79de;&#34;&gt;/checkout&lt;/span&gt; and accordingly &lt;span style=&#34;color:#6d79de;&#34;&gt;/customcheckout/basket&lt;/span&gt; -&amp;gt; &lt;span style=&#34;color:#6d79de;&#34;&gt;/checkout/cart&lt;/span&gt;, аnd also redirect &lt;span style=&#34;color:#6d79de;&#34;&gt;/checkout&lt;/span&gt; &amp;ndash;&amp;gt; &lt;span style=&#34;color:#6d79de;&#34;&gt;/customcheckout&lt;/span&gt; and &lt;span style=&#34;color:#6d79de;&#34;&gt;/checkout/cart&lt;/span&gt; &amp;ndash;&amp;gt;&lt;span style=&#34;color:#6d79de;&#34;&gt;/customcheckout/basket&lt;/span&gt;. At the same time must work functions such &lt;span style=&#34;color:#6d79de;&#34;&gt;/checkout/cart/add&lt;/span&gt;, &lt;span style=&#34;color:#6d79de;&#34;&gt;/checkout/cart/delete&lt;/span&gt;, &lt;span style=&#34;color:#6d79de;&#34;&gt;/checkout/cart/updatepost&lt;/span&gt;&amp;hellip; and others.&lt;/p&gt;
+
+&lt;p&gt;Create a standard set of files for our module&lt;/p&gt;
+
+&lt;p&gt;/app/code/CheeryMagic/CustomCheckout/registration.php&lt;/p&gt;
+
+&lt;pre&gt;
+
+    &lt;code class=&#34;language-php&#34;&gt;    &amp;lt;?php
+    \Magento\Framework\Component\ComponentRegistrar::register(
+        \Magento\Framework\Component\ComponentRegistrar::MODULE,
+        &#39;CheeryMagic_CustomCheckout&#39;,
+        __DIR__
+    );&lt;/code&gt;
+
+&lt;/pre&gt;
+
+&lt;p&gt;/app/code/CheeryMagic/CustomCheckout/composer.json&lt;/p&gt;
+
+&lt;pre&gt;
+
+    &lt;code class=&#34;language-json&#34;&gt;    {
+    &#34;name&#34;: &#34;cheerymagic/module-customcheckout&#34;,
+        &#34;description&#34;: &#34;&#34;,
+        &#34;license&#34;: &#34;&#34;,
+        &#34;authors&#34;: [
+            {
+                &#34;name&#34;: &#34;CustomCheckout&#34;,
+                &#34;email&#34;: &#34;cheerymagicsoftware@gmail.com&#34;
+            }
+        ],
+        &#34;minimum-stability&#34;: &#34;dev&#34;,
+        &#34;require&#34;: {},
+        &#34;autoload&#34;: {
+            &#34;psr-4&#34;: {
+                &#34;CheeryMagic\\CustomCheckout\\&#34;: &#34;&#34;
+            },
+            &#34;files&#34;: [
+                &#34;registration.php&#34;
+            ]
+        }
+    }&lt;/code&gt;
+
+&lt;/pre&gt;
+
+&lt;p&gt;/app/code/CheeryMagic/CustomCheckout/etc/module.xml&lt;/p&gt;
+
+&lt;pre&gt;
+
+    &lt;code class=&#34;language-html&#34;&gt;    &amp;lt;?xml version=&#34;1.0&#34; ?&amp;gt;
+    &lt;config xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xsi:noNamespaceSchemaLocation=&#34;urn:magento:framework:Module/etc/module.xsd&#34;&gt;
+        &amp;lt;module name=&#34;CheeryMagic_CustomCheckout&#34; setup_version=&#34;1.0.0&#34; /&amp;gt;
+    &lt;/config&gt;&lt;/code&gt;
+
+&lt;/pre&gt;
+
+&lt;p&gt;/app/code/CheeryMagic/CustomCheckout/etc/frontend/routes.xml&lt;/p&gt;
+
+&lt;pre&gt;
+
+    &lt;code class=&#34;language-html&#34;&gt;    &amp;lt;?xml version=&#34;1.0&#34; ?&amp;gt;
+    &lt;config xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xsi:noNamespaceSchemaLocation=&#34;urn:magento:framework:App/etc/routes.xsd&#34;&gt;
+        &lt;router id=&#34;standard&#34;&gt;
+            &lt;route frontName=&#34;customcheckout&#34; id=&#34;customcheckout&#34;&gt;
+                &lt;module name=&#34;CheeryMagic_CustomCheckout&#34;/&gt;
+            &lt;/route&gt;
+        &lt;/router&gt;
+    &lt;/config&gt;&lt;/code&gt;
+
+&lt;/pre&gt;
+
+&lt;p&gt;Now we show that we have to use a router class to call &lt;span style=&#34;color:#6d79de;&#34;&gt;/customcheckout&lt;/span&gt; and &lt;span style=&#34;color:#6d79de;&#34;&gt;/customcheckout/basket&lt;/span&gt;:&lt;/p&gt;
+
+&lt;p&gt;/app/code/CheeryMagic/CustomCheckout/etc/frontend/di.xml&lt;/p&gt;
+
+&lt;pre&gt;
+
+    &lt;code class=&#34;language-html&#34;&gt;    &amp;lt;?xml version=&#34;1.0&#34; ?&amp;gt;
+    &lt;config xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xsi:noNamespaceSchemaLocation=&#34;urn:magento:framework:ObjectManager/etc/config.xsd&#34;&gt;
+        &lt;type name=&#34;Magento\Framework\App\RouterList&#34;&gt;
+            &lt;arguments&gt;
+                &lt;argument name=&#34;routerList&#34; xsi:type=&#34;array&#34;&gt;
+                    &lt;item name=&#34;customcheckout&#34; xsi:type=&#34;array&#34;&gt;
+                        &lt;item name=&#34;class&#34; xsi:type=&#34;string&#34;&gt;CheeryMagic\CustomCheckout\Controller\Router&lt;/item&gt;
+                        &lt;item name=&#34;disable&#34; xsi:type=&#34;boolean&#34;&gt;false&lt;/item&gt;
+                        &lt;item name=&#34;sortOrder&#34; xsi:type=&#34;string&#34;&gt;60&lt;/item&gt;
+                    &lt;/item&gt;
+                &lt;/argument&gt;
+            &lt;/arguments&gt;
+        &lt;/type&gt;
+    &lt;/config&gt;&lt;/code&gt;
+
+&lt;/pre&gt;
+
+&lt;p&gt;Class router, which will be targeted to load our &lt;span style=&#34;color:#6d79de;&#34;&gt;checkout/index/index&lt;/span&gt; and &lt;span style=&#34;color:#6d79de;&#34;&gt;checkout/cart/index&lt;/span&gt;:&lt;/p&gt;
+
+&lt;p&gt;/app/code/CheeryMagic/CustomCheckout/Controller/Router.php&lt;/p&gt;
+
+&lt;pre&gt;
+
+    &lt;code class=&#34;language-php&#34;&gt;    &amp;lt;?php
+
+    namespace CheeryMagic\CustomCheckout\Controller;
+
+    class Router implements \Magento\Framework\App\RouterInterface
+    {
+
+        /**
+         * @var \Magento\Framework\App\ActionFactory
+         */
+
+        protected $actionFactory;
+
+        /**
+         * @param \Magento\Framework\App\ActionFactory $actionFactory
+         */
+
+        public function __construct(
+            \Magento\Framework\App\ActionFactory $actionFactory
+        )
+        {
+            $this-&gt;actionFactory = $actionFactory;
+        }
+
+        /**
+         * @param \Magento\Framework\App\RequestInterface $request
+         * @return bool
+         */
+        public function match(\Magento\Framework\App\RequestInterface $request)
+        {
+
+            $uri = \CheeryMagic\CustomCheckout\Plugin\Helper::getArrayPathInfo($request-&gt;getPathInfo());
+
+            $route = [];
+            if (
+                count($uri) == 2 &amp;&amp;
+                ($uri[0] == &#39;checkout&#39; &amp;&amp; $uri[1] == &#39;cart&#39; || $uri[0] == &#39;customcheckout&#39; &amp;&amp; $uri[1] == &#39;basket&#39;)
+            ) {
+                $route = [
+                    &#39;module&#39; =&gt; &#39;checkout&#39;,
+                    &#39;controller&#39; =&gt; &#39;cart&#39;,
+                    &#39;action&#39; =&gt; &#39;index&#39;
+                ];
+            }
+            if (count($uri) == 1 &amp;&amp; ($uri[0] == &#39;checkout&#39; || $uri[0] == &#39;customcheckout&#39;)) {
+                $route = [
+                    &#39;module&#39; =&gt; &#39;checkout&#39;,
+                    &#39;controller&#39; =&gt; &#39;index&#39;,
+                    &#39;action&#39; =&gt; &#39;index&#39;
+                ];
+            }
+
+            if (!empty($route)) {
+                $module = $request-&gt;setModuleName($route[&#39;module&#39;]);
+                $module-&gt;setControllerName($route[&#39;controller&#39;])-&gt;setActionName($route[&#39;action&#39;]);
+                $request-&gt;setAlias(\Magento\Framework\Url::REWRITE_REQUEST_PATH_ALIAS, $uri);
+
+                return $this-&gt;actionFactory-&gt;create(&#39;Magento\Framework\App\Action\Forward&#39;);
+            } else {
+                return null;
+            }
+
+        }
+
+    }&lt;/code&gt;
+
+&lt;/pre&gt;
+
+&lt;p&gt;We also use a little helper function which will choose from our $request array to determine this &lt;span style=&#34;color:#6d79de;&#34;&gt;/checkout&lt;/span&gt; or &lt;span style=&#34;color:#6d79de;&#34;&gt;/checkout/cart&lt;/span&gt;:&lt;/p&gt;
+
+&lt;p&gt;/app/code/CheeryMagic/CustomCheckout/Plugin/Helper.php&lt;/p&gt;
+
+&lt;pre&gt;
+
+    &lt;code class=&#34;language-php&#34;&gt;    &amp;lt;?php
+
+    namespace CheeryMagic\CustomCheckout\Plugin;
+
+    class Helper
+    {
+
+        /**
+         * @param $pathInfo
+         * @return array
+         */
+
+        public static function getArrayPathInfo($pathInfo)
+        {
+            $array = [];
+            if ($pathInfo === &#39;&#39;)
+                return $array;
+            $segs = explode(&#39;/&#39;, $pathInfo . &#39;/&#39;);
+            $n = count($segs);
+            for ($i = 0; $i &lt; $n - 1; $i++) {
+                $key = $segs[$i];
+                if ($key === &#39;&#39;) continue;
+                if (!(($pos = strpos($key, &#39;[&#39;)) !== false &amp;&amp; ($m = preg_match_all(&#39;/\[(.*?)\]/&#39;, $key, $matches)) &gt; 0))
+                    $array[] = $key;
+            }
+            return $array;
+        }
+    }&lt;/code&gt;
+
+&lt;/pre&gt;
+
+&lt;p&gt;Now the problem to intercept the path &lt;span style=&#34;color:#6d79de;&#34;&gt;/checkout&lt;/span&gt; and &lt;span style=&#34;color:#6d79de;&#34;&gt;/checkout/cart&lt;/span&gt; on which can throw us Magento 2 and make redirect to Route Class of our module. For this add plugins &amp;lsquo;before&amp;rsquo; on function dispatch() in abstract classes. &lt;span style=&#34;color:#6d79de;&#34;&gt;Magento\Checkout\Controller\Cart&lt;/span&gt; and &lt;span style=&#34;color:#6d79de;&#34;&gt;Magento\Checkout\Controller\Action&lt;/span&gt; .&lt;/p&gt;
+
+&lt;p&gt;/app/code/CheeryMagic/CustomCheckout/etc/di.xml&lt;/p&gt;
+
+&lt;pre&gt;
+
+    &lt;code class=&#34;language-html&#34;&gt;    &amp;lt;?xml version=&#34;1.0&#34; ?&amp;gt;
+    &lt;config xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xsi:noNamespaceSchemaLocation=&#34;urn:magento:framework:ObjectManager/etc/config.xsd&#34;&gt;
+        &lt;type name=&#34;Magento\Checkout\Controller\Cart&#34;&gt;
+            &lt;plugin disabled=&#34;false&#34; name=&#34;CheeryMagic_CustomCheckout_Plugin_Magento_Checkout_Controller_Cart&#34; sortOrder=&#34;10&#34; type=&#34;CheeryMagic\CustomCheckout\Plugin\Magento\Checkout\Controller\Cart&#34;/&gt;
+        &lt;/type&gt;
+        &lt;type name=&#34;Magento\Checkout\Controller\Action&#34;&gt;
+            &lt;plugin disabled=&#34;false&#34; name=&#34;CheeryMagic_CustomCheckout_Plugin_Magento_Checkout_Controller_Action&#34; sortOrder=&#34;10&#34; type=&#34;CheeryMagic\CustomCheckout\Plugin\Magento\Checkout\Controller\Action&#34;/&gt;
+        &lt;/type&gt;
+    &lt;/config&gt;&lt;/code&gt;
+
+&lt;/pre&gt;
+
+&lt;p&gt;/app/code/CheeryMagic/CustomCheckout/Plugin/Magento/Checkout/Controller/Cart.php&lt;/p&gt;
+
+&lt;pre&gt;
+
+    &lt;code class=&#34;language-php&#34;&gt;    &amp;lt;?php
+
+    namespace CheeryMagic\CustomCheckout\Plugin\Magento\Checkout\Controller;
+
+    class Cart
+    {
+
+        /**
+         * @param \Magento\Checkout\Controller\Cart $subject
+         * @param \Magento\Framework\App\RequestInterface $request
+         */
+
+        public function beforeDispatch(
+            \Magento\Checkout\Controller\Cart $subject,
+            \Magento\Framework\App\RequestInterface $request
+        ) {
+
+            $uri = \CheeryMagic\CustomCheckout\Plugin\Helper::getArrayPathInfo($request-&gt;getPathInfo());
+            $parseUri = parse_url($request-&gt;getRequestUri());
+            $query = isset($parseUri[&#39;query&#39;]) ?  &#39;?&#39; . $parseUri[&#39;query&#39;] : &#39;&#39;;
+
+            if(count($uri) == 2 &amp;&amp; $uri[0] == &#39;checkout&#39; &amp;&amp; $uri[1] == &#39;cart&#39;)
+            {
+                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                $responseFactory = $objectManager-&gt;get(&#39;\Magento\Framework\App\ResponseFactory&#39;);
+                $url = $objectManager-&gt;get(&#39;Magento\Framework\UrlInterface&#39;);
+                $responseFactory-&gt;create()-&gt;setRedirect(
+                    $url-&gt;getUrl(&#39;customcheckout/basket&#39; . $query
+                    ))-&gt;sendResponse();
+                exit();
+
+           }
+
+        }
+    }&lt;/code&gt;
+
+&lt;/pre&gt;
+
+&lt;p&gt;/app/code/CheeryMagic/CustomCheckout/Plugin/Magento/Checkout/Controller/Action.php&lt;/p&gt;
+
+&lt;pre&gt;
+
+    &lt;code class=&#34;language-php&#34;&gt;    &amp;lt;?php
+
+    namespace CheeryMagic\CustomCheckout\Plugin\Magento\Checkout\Controller;
+
+    class Action
+    {
+        /**
+         * @param \Magento\Checkout\Controller\Action $subject
+         * @param \Magento\Framework\App\RequestInterface $request
+         */
+
+        public function beforeDispatch(
+            \Magento\Checkout\Controller\Action $subject,
+            \Magento\Framework\App\RequestInterface $request
+        )
+        {
+            $uri = \CheeryMagic\CustomCheckout\Plugin\Helper::getArrayPathInfo($request-&gt;getPathInfo());
+            $parseUri = parse_url($request-&gt;getRequestUri());
+            $query = isset($parseUri[&#39;query&#39;]) ? &#39;?&#39; . $parseUri[&#39;query&#39;] : &#39;&#39;;
+
+            if (count($uri) == 1 &amp;&amp; $uri[0] == &#39;checkout&#39;) {
+                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                $responseFactory = $objectManager-&gt;get(&#39;\Magento\Framework\App\ResponseFactory&#39;);
+                $url = $objectManager-&gt;get(&#39;Magento\Framework\UrlInterface&#39;);
+                $responseFactory-&gt;create()-&gt;setRedirect(
+                    $url-&gt;getUrl(&#39;customcheckout&#39; . $query
+                    ))-&gt;sendResponse();
+                exit();
+            }
+
+        }
+    }&lt;/code&gt;
+
+&lt;/pre&gt;
+
+&lt;p&gt;Run in consloe php bin/magento setup:upgrade.&lt;/p&gt;
+
+&lt;p&gt;Now you need override links in your Magento 2 Theme from &lt;span style=&#34;color:#6d79de;&#34;&gt;/checkout&lt;/span&gt; to &lt;span style=&#34;color:#6d79de;&#34;&gt;/customcheckout&lt;/span&gt; and &lt;span style=&#34;color:#6d79de;&#34;&gt;/checkout/cart&lt;/span&gt; to &lt;span style=&#34;color:#6d79de;&#34;&gt;/customcheckout/basket&lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://cheerymagicsoftware.github.io/images/custom-url-cart-magento-2.png&#34; alt=&#34;Custom Url Cart in Magento 2&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://cheerymagicsoftware.github.io/images/custom-url-checkout-magento-2.png&#34; alt=&#34;Custom Url Checkout in Magento 2&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This module isn&amp;rsquo;t a universal solution, and is given as a way to solve the problem or how to work with the routers and plugins in Magento 2. It is also possible that the module may conflict with your installed modules. This module can be &lt;a target=&#34;_blank&#34; class=&#34;magento2-link&#34; href=&#34;https://github.com/cheerymagicsoftware/CustomCheckout&#34;&gt;downloaded &lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Magento 2 Repositories and Factories</title>
@@ -308,7 +638,7 @@ php bin/magento setup:upgrade&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://cheerymagicsoftware.github.io/images/admin_view.png&#34; alt=&#34;admin view&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;We&amp;rsquo;ve created new custom field &amp;ldquo;Delivery Instruction&amp;rdquo;. In fronted you may work with it programmatically.&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;ve created new custom field &amp;ldquo;Delivery Instruction&amp;rdquo;. In frontend you may work with it programmatically.&lt;/p&gt;
 
 &lt;pre&gt;
 
@@ -321,6 +651,10 @@ php bin/magento setup:upgrade&lt;/p&gt;
 &lt;p&gt;For more information on EAV and extension attributes are available on the official page:
 &lt;a class=&#34;magento2-link&#34; href=&#34;http://devdocs.magento.com/guides/v2.0/extension-dev-guide/attributes.html&#34;&gt;
     &lt;a href=&#34;http://devdocs.magento.com/guides/v2.0/extension-dev-guide/attributes.html&#34;&gt;http://devdocs.magento.com/guides/v2.0/extension-dev-guide/attributes.html&lt;/a&gt;
+&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;magento2-link&#34; target=&#34;_blank&#34; href=&#34;https://github.com/cheerymagicsoftware/CustomerAddress&#34;&gt;
+Download Module
 &lt;/a&gt;&lt;/p&gt;
 </description>
     </item>

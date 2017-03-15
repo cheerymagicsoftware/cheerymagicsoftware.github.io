@@ -1,0 +1,492 @@
+  <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title> Custom url for checkout and cart in Magento 2 &middot; Cheerymagicsoftware official page </title>
+    <meta name="keywords" content="[Magento 2, Php Development, mage 2, E-commerce, Magento 2 modules Example, Custom url for checkout, Custom url for cart] ">
+    <meta name="description" content="Magento 2 Development. Create custom url for checkout and cart for your Magento 2 shop.">
+    <meta name="robots" content="all" />
+    <meta http-equiv="content-script-type" content="text/javascript" />
+    <meta http-equiv="content-language" content="en" />
+    <meta name="language" content="en" />
+
+
+    
+    <link rel="stylesheet" type="text/css" href="https://cheerymagicsoftware.github.io//css/uno.min.css" />
+    
+    
+    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Cheerymagicsoftware official page" />
+    
+    <script src="https://cheerymagicsoftware.github.io//js/jquery.min.js"></script>
+    <script src="https://cheerymagicsoftware.github.io//js/main.min.js"></script>
+
+    
+    <script src="https://cheerymagicsoftware.github.io//js/rainbow-custom.min.js"></script>
+    
+    
+    
+    <script>
+        if (window.location.hostname != "127.0.0.1")
+        {
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-92531543-1', 'auto');
+            ga('send', 'pageview');
+        }
+
+    </script>
+    
+</head>
+
+  <body>
+    <div id="scriptHeader">
+    <span class="mobile btn-mobile-menu">
+            <i class="fa fa-bars btn-mobile-menu__icon"></i>
+            <i class="fa fa-times btn-mobile-close__icon hidden"> </i>
+    </span>
+    <header class="
+        
+            panel-cover panel-cover--collapsed
+        "  style="background-image: url(/images/php_code.png)" >
+    <div class="panel-main">
+        <div class="panel-main__inner panel-inverted">
+            <div class="panel-main__content"> 
+                <h1 class="panel-cover__title panel-title">
+                    <a href="https://cheerymagicsoftware.github.io//"  title="link to homepage for Cheerymagicsoftware official page">Cheerymagicsoftware official page</a>
+                </h1>
+                <hr class="panel-cover__divider" />
+                <p class="panel-cover__description">  Programming is a cheery magic!  </p>
+                <hr class="panel-cover__divider panel-cover__divider--secondary" />
+                <div class="navigation-wrapper">
+                    <nav class="cover-navigation cover-navigation--primary">
+                        <ul class="navigation">
+                            <li class="navigation__item"><a href="https://cheerymagicsoftware.github.io/#blog" title="link to Cheerymagicsoftware official page blog" class="blog-button">Blog</a> </li></br>
+                            <li class="navigation__item"><a href="https://cheerymagicsoftware.github.io//about-us" title="link to Cheerymagicsoftware official page blog" class="blog-button">About Us</a> </li></br>
+                            
+                            
+                       </ul>
+                    </nav> <nav class="cover-navigation navigation--social">
+    <ul class="navigation">    </br>    </ul>
+</nav>
+ </div>
+            </div>
+        </div>
+        <div class="panel-cover--overlay"></div>
+    </div>
+</header>
+</div>
+<noscript>
+    <style>
+        #scriptHeader {display:none;}
+        .navigation-wrapper{
+            display: block;
+            top: 0;
+        }
+    </style>
+
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/php_code.png)">
+        <div class="panel-main">
+            <div class="panel-main__inner panel-inverted">
+                <div class="panel-main__content"> 
+                    <h1 class="panel-cover__title panel-title">
+                        <a href="https://cheerymagicsoftware.github.io//"  title="link to homepage for Cheerymagicsoftware official page">Cheerymagicsoftware official page</a>
+                    </h1>
+                    <hr class="panel-cover__divider" />
+                    <p class="panel-cover__description">  This site is built using <a href="http://gohugo.io">hugo</a> and the theme is built by <a href="http://fredrikloch.me">Fredrik</a> if you enjoy it, it is available at <a href="https://github.com/SenjinDarashiva/hugo-uno">github</a>  </p>
+                    <hr class="panel-cover__divider panel-cover__divider--secondary" />
+                    <div class="navigation-wrapper">
+                        <nav class="cover-navigation cover-navigation--primary">
+                            <ul class="navigation">
+                                <li class="navigation__item"><a href="https://cheerymagicsoftware.github.io//#blog" title="link to Cheerymagicsoftware official page blog" class="blog-button">Blog</a> </li></br>
+                                
+                                
+                           </ul>
+                        </nav> <nav class="cover-navigation navigation--social">
+    <ul class="navigation">    </br>    </ul>
+</nav>
+ </div>
+                </div>
+            </div>
+            <div class="panel-cover--overlay"></div>
+        </div>
+    </header>
+</noscript>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <div class="post">
+          <h1>Custom url for checkout and cart in Magento 2</h1>
+          <span class="post-date">Wed, Mar 15, 2017</span>
+          <p>Suppose you need change checkout&rsquo;s url  (<span style="color:#6d79de;">/checkout</span> to <span style="color:#6d79de;">/customcheckout</span>)  and cart (<span style="color:#6d79de;">/checkout/cart</span> to <span style="color:#6d79de;">/customcheckout/basket</span>)  in Magento 2 shop. The first thing that comes to mind use Url Rewrite Module (Admin-&gt;Marketing-&gt;Url Rewrites)</p>
+
+<p><img src="/images/add-new-url-rewrite-magento-2.png" alt="Add url rewrite in Magento 2" /></p>
+
+<p>For these two links need set Redirect type = &ldquo;No&rdquo; and redefine new links in your theme (suppose you can do it). During use will be that the collapses in the shipping or payment you will always return to the page &ldquo;<span style="color:#6d79de;">checkout/cart</span>&rdquo; - this is hardcoded in Magento 2:</p>
+
+<p><img src="/images/search-cart-in-vendor-magento-2.png" alt="Search cart in vendor Magento 2" /></p>
+
+<p>Also <span style="color:#6d79de;">/customcheckout#shipping</span> after estimate, you redirect to <span style="color:#6d79de;">checkout/#payment</span>. So let&rsquo;s make module, which by url define if <span style="color:#6d79de;">/customcheckout</span> then needed load module <span style="color:#6d79de;">/checkout</span> and accordingly <span style="color:#6d79de;">/customcheckout/basket</span> -&gt; <span style="color:#6d79de;">/checkout/cart</span>, аnd also redirect <span style="color:#6d79de;">/checkout</span> &ndash;&gt; <span style="color:#6d79de;">/customcheckout</span> and <span style="color:#6d79de;">/checkout/cart</span> &ndash;&gt;<span style="color:#6d79de;">/customcheckout/basket</span>. At the same time must work functions such <span style="color:#6d79de;">/checkout/cart/add</span>, <span style="color:#6d79de;">/checkout/cart/delete</span>, <span style="color:#6d79de;">/checkout/cart/updatepost</span>&hellip; and others.</p>
+
+<p>Create a standard set of files for our module</p>
+
+<p>/app/code/CheeryMagic/CustomCheckout/registration.php</p>
+
+<pre>
+
+    <code class="language-php">    &lt;?php
+    \Magento\Framework\Component\ComponentRegistrar::register(
+        \Magento\Framework\Component\ComponentRegistrar::MODULE,
+        'CheeryMagic_CustomCheckout',
+        __DIR__
+    );</code>
+
+</pre>
+
+<p>/app/code/CheeryMagic/CustomCheckout/composer.json</p>
+
+<pre>
+
+    <code class="language-json">    {
+    "name": "cheerymagic/module-customcheckout",
+        "description": "",
+        "license": "",
+        "authors": [
+            {
+                "name": "CustomCheckout",
+                "email": "cheerymagicsoftware@gmail.com"
+            }
+        ],
+        "minimum-stability": "dev",
+        "require": {},
+        "autoload": {
+            "psr-4": {
+                "CheeryMagic\\CustomCheckout\\": ""
+            },
+            "files": [
+                "registration.php"
+            ]
+        }
+    }</code>
+
+</pre>
+
+<p>/app/code/CheeryMagic/CustomCheckout/etc/module.xml</p>
+
+<pre>
+
+    <code class="language-html">    &lt;?xml version="1.0" ?&gt;
+    <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+        &lt;module name="CheeryMagic_CustomCheckout" setup_version="1.0.0" /&gt;
+    </config></code>
+
+</pre>
+
+<p>/app/code/CheeryMagic/CustomCheckout/etc/frontend/routes.xml</p>
+
+<pre>
+
+    <code class="language-html">    &lt;?xml version="1.0" ?&gt;
+    <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+        <router id="standard">
+            <route frontName="customcheckout" id="customcheckout">
+                <module name="CheeryMagic_CustomCheckout"/>
+            </route>
+        </router>
+    </config></code>
+
+</pre>
+
+<p>Now we show that we have to use a router class to call <span style="color:#6d79de;">/customcheckout</span> and <span style="color:#6d79de;">/customcheckout/basket</span>:</p>
+
+<p>/app/code/CheeryMagic/CustomCheckout/etc/frontend/di.xml</p>
+
+<pre>
+
+    <code class="language-html">    &lt;?xml version="1.0" ?&gt;
+    <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+        <type name="Magento\Framework\App\RouterList">
+            <arguments>
+                <argument name="routerList" xsi:type="array">
+                    <item name="customcheckout" xsi:type="array">
+                        <item name="class" xsi:type="string">CheeryMagic\CustomCheckout\Controller\Router</item>
+                        <item name="disable" xsi:type="boolean">false</item>
+                        <item name="sortOrder" xsi:type="string">60</item>
+                    </item>
+                </argument>
+            </arguments>
+        </type>
+    </config></code>
+
+</pre>
+
+<p>Class router, which will be targeted to load our <span style="color:#6d79de;">checkout/index/index</span> and <span style="color:#6d79de;">checkout/cart/index</span>:</p>
+
+<p>/app/code/CheeryMagic/CustomCheckout/Controller/Router.php</p>
+
+<pre>
+
+    <code class="language-php">    &lt;?php
+
+    namespace CheeryMagic\CustomCheckout\Controller;
+
+    class Router implements \Magento\Framework\App\RouterInterface
+    {
+
+        /**
+         * @var \Magento\Framework\App\ActionFactory
+         */
+
+        protected $actionFactory;
+
+        /**
+         * @param \Magento\Framework\App\ActionFactory $actionFactory
+         */
+
+        public function __construct(
+            \Magento\Framework\App\ActionFactory $actionFactory
+        )
+        {
+            $this->actionFactory = $actionFactory;
+        }
+
+        /**
+         * @param \Magento\Framework\App\RequestInterface $request
+         * @return bool
+         */
+        public function match(\Magento\Framework\App\RequestInterface $request)
+        {
+
+            $uri = \CheeryMagic\CustomCheckout\Plugin\Helper::getArrayPathInfo($request->getPathInfo());
+
+            $route = [];
+            if (
+                count($uri) == 2 &&
+                ($uri[0] == 'checkout' && $uri[1] == 'cart' || $uri[0] == 'customcheckout' && $uri[1] == 'basket')
+            ) {
+                $route = [
+                    'module' => 'checkout',
+                    'controller' => 'cart',
+                    'action' => 'index'
+                ];
+            }
+            if (count($uri) == 1 && ($uri[0] == 'checkout' || $uri[0] == 'customcheckout')) {
+                $route = [
+                    'module' => 'checkout',
+                    'controller' => 'index',
+                    'action' => 'index'
+                ];
+            }
+
+            if (!empty($route)) {
+                $module = $request->setModuleName($route['module']);
+                $module->setControllerName($route['controller'])->setActionName($route['action']);
+                $request->setAlias(\Magento\Framework\Url::REWRITE_REQUEST_PATH_ALIAS, $uri);
+
+                return $this->actionFactory->create('Magento\Framework\App\Action\Forward');
+            } else {
+                return null;
+            }
+
+        }
+
+    }</code>
+
+</pre>
+
+<p>We also use a little helper function which will choose from our $request array to determine this <span style="color:#6d79de;">/checkout</span> or <span style="color:#6d79de;">/checkout/cart</span>:</p>
+
+<p>/app/code/CheeryMagic/CustomCheckout/Plugin/Helper.php</p>
+
+<pre>
+
+    <code class="language-php">    &lt;?php
+
+    namespace CheeryMagic\CustomCheckout\Plugin;
+
+    class Helper
+    {
+
+        /**
+         * @param $pathInfo
+         * @return array
+         */
+
+        public static function getArrayPathInfo($pathInfo)
+        {
+            $array = [];
+            if ($pathInfo === '')
+                return $array;
+            $segs = explode('/', $pathInfo . '/');
+            $n = count($segs);
+            for ($i = 0; $i < $n - 1; $i++) {
+                $key = $segs[$i];
+                if ($key === '') continue;
+                if (!(($pos = strpos($key, '[')) !== false && ($m = preg_match_all('/\[(.*?)\]/', $key, $matches)) > 0))
+                    $array[] = $key;
+            }
+            return $array;
+        }
+    }</code>
+
+</pre>
+
+<p>Now the problem to intercept the path <span style="color:#6d79de;">/checkout</span> and <span style="color:#6d79de;">/checkout/cart</span> on which can throw us Magento 2 and make redirect to Route Class of our module. For this add plugins &lsquo;before&rsquo; on function dispatch() in abstract classes. <span style="color:#6d79de;">Magento\Checkout\Controller\Cart</span> and <span style="color:#6d79de;">Magento\Checkout\Controller\Action</span> .</p>
+
+<p>/app/code/CheeryMagic/CustomCheckout/etc/di.xml</p>
+
+<pre>
+
+    <code class="language-html">    &lt;?xml version="1.0" ?&gt;
+    <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+        <type name="Magento\Checkout\Controller\Cart">
+            <plugin disabled="false" name="CheeryMagic_CustomCheckout_Plugin_Magento_Checkout_Controller_Cart" sortOrder="10" type="CheeryMagic\CustomCheckout\Plugin\Magento\Checkout\Controller\Cart"/>
+        </type>
+        <type name="Magento\Checkout\Controller\Action">
+            <plugin disabled="false" name="CheeryMagic_CustomCheckout_Plugin_Magento_Checkout_Controller_Action" sortOrder="10" type="CheeryMagic\CustomCheckout\Plugin\Magento\Checkout\Controller\Action"/>
+        </type>
+    </config></code>
+
+</pre>
+
+<p>/app/code/CheeryMagic/CustomCheckout/Plugin/Magento/Checkout/Controller/Cart.php</p>
+
+<pre>
+
+    <code class="language-php">    &lt;?php
+
+    namespace CheeryMagic\CustomCheckout\Plugin\Magento\Checkout\Controller;
+
+    class Cart
+    {
+
+        /**
+         * @param \Magento\Checkout\Controller\Cart $subject
+         * @param \Magento\Framework\App\RequestInterface $request
+         */
+
+        public function beforeDispatch(
+            \Magento\Checkout\Controller\Cart $subject,
+            \Magento\Framework\App\RequestInterface $request
+        ) {
+
+            $uri = \CheeryMagic\CustomCheckout\Plugin\Helper::getArrayPathInfo($request->getPathInfo());
+            $parseUri = parse_url($request->getRequestUri());
+            $query = isset($parseUri['query']) ?  '?' . $parseUri['query'] : '';
+
+            if(count($uri) == 2 && $uri[0] == 'checkout' && $uri[1] == 'cart')
+            {
+                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                $responseFactory = $objectManager->get('\Magento\Framework\App\ResponseFactory');
+                $url = $objectManager->get('Magento\Framework\UrlInterface');
+                $responseFactory->create()->setRedirect(
+                    $url->getUrl('customcheckout/basket' . $query
+                    ))->sendResponse();
+                exit();
+
+           }
+
+        }
+    }</code>
+
+</pre>
+
+<p>/app/code/CheeryMagic/CustomCheckout/Plugin/Magento/Checkout/Controller/Action.php</p>
+
+<pre>
+
+    <code class="language-php">    &lt;?php
+
+    namespace CheeryMagic\CustomCheckout\Plugin\Magento\Checkout\Controller;
+
+    class Action
+    {
+        /**
+         * @param \Magento\Checkout\Controller\Action $subject
+         * @param \Magento\Framework\App\RequestInterface $request
+         */
+
+        public function beforeDispatch(
+            \Magento\Checkout\Controller\Action $subject,
+            \Magento\Framework\App\RequestInterface $request
+        )
+        {
+            $uri = \CheeryMagic\CustomCheckout\Plugin\Helper::getArrayPathInfo($request->getPathInfo());
+            $parseUri = parse_url($request->getRequestUri());
+            $query = isset($parseUri['query']) ? '?' . $parseUri['query'] : '';
+
+            if (count($uri) == 1 && $uri[0] == 'checkout') {
+                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                $responseFactory = $objectManager->get('\Magento\Framework\App\ResponseFactory');
+                $url = $objectManager->get('Magento\Framework\UrlInterface');
+                $responseFactory->create()->setRedirect(
+                    $url->getUrl('customcheckout' . $query
+                    ))->sendResponse();
+                exit();
+            }
+
+        }
+    }</code>
+
+</pre>
+
+<p>Run in consloe php bin/magento setup:upgrade.</p>
+
+<p>Now you need override links in your Magento 2 Theme from <span style="color:#6d79de;">/checkout</span> to <span style="color:#6d79de;">/customcheckout</span> and <span style="color:#6d79de;">/checkout/cart</span> to <span style="color:#6d79de;">/customcheckout/basket</span>.</p>
+
+<p><img src="/images/custom-url-cart-magento-2.png" alt="Custom Url Cart in Magento 2" /></p>
+
+<p><img src="/images/custom-url-checkout-magento-2.png" alt="Custom Url Checkout in Magento 2" /></p>
+
+<p>This module isn&rsquo;t a universal solution, and is given as a way to solve the problem or how to work with the routers and plugins in Magento 2. It is also possible that the module may conflict with your installed modules. This module can be <a target="_blank" class="magento2-link" href="https://github.com/cheerymagicsoftware/CustomCheckout">downloaded </a>.</p>
+
+        </div>
+        <div class="sharing">
+<a href="https://twitter.com/intent/tweet?status=Custom%20url%20for%20checkout%20and%20cart%20in%20Magento%202-https%3a%2f%2fcheerymagicsoftware.github.io%2fpost%2fcustom-url-for-checkout-and-cart%2f" target="_blank" title="Follow me on Twitter" class="twitter">
+<span class="fa fa-twitter-square fa-3x"></span></a>
+<a href="https://www.facebook.com/sharer/sharer.php?src=https%3a%2f%2fcheerymagicsoftware.github.io%2fpost%2fcustom-url-for-checkout-and-cart%2f" target="_blank" title="Join me on Facebook" class="facebook">
+<span class="fa fa-facebook-square fa-3x"></span></a>
+<a href="https://plus.google.com/share?url=https%3a%2f%2fcheerymagicsoftware.github.io%2fpost%2fcustom-url-for-checkout-and-cart%2f" target="_blank" title="Google+" class="googleplus">
+<span class="fa fa-google-plus-square fa-3x"></span></a>
+<a href="http://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fcheerymagicsoftware.github.io%2fpost%2fcustom-url-for-checkout-and-cart%2f&title=Custom%20url%20for%20checkout%20and%20cart%20in%20Magento%202" target="_blank" title="LinkedIn" class="linkedin">
+<span class="fa fa-linkedin-square fa-3x"></span></a>
+<a href="http://www.reddit.com/submit?url=https%3a%2f%2fcheerymagicsoftware.github.io%2fpost%2fcustom-url-for-checkout-and-cart%2f" target="_blank" title="Reddit" class="reddit"><span class="fa fa-reddit-square fa-3x"></span></a>
+<a href="http://www.stumbleupon.com/submit?url=https%3a%2f%2fcheerymagicsoftware.github.io%2fpost%2fcustom-url-for-checkout-and-cart%2f" target="_blank" title="StumbleUpon" class="stumbleupon"><span class="fa fa-stumbleupon fa-3x">
+</span></a>
+</div>
+        
+
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+  var disqusUsername = "cheerymagic-official";
+
+  (function() { 
+  var d = document, s = d.createElement('script');
+
+  s.src = '//' + disqusUsername + '.disqus.com/embed.js';
+
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+<a href="http://www.copyscape.com/"><img src="http://banners.copyscape.com/img/copyscape-banner-gray-200x25.png" width="200" height="25" border="0" alt="Protected by Copyscape" title="Protected by Copyscape Plagiarism Checker - Do not copy content from this page." /></a>
+
+      </div>
+    </div>
+
+  </body>
+  
+</html>
