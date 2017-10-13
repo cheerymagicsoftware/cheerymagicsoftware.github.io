@@ -133,15 +133,8 @@ jsExpiredCallback - Js code if reCaptcha is expired.&lt;/p&gt;
 
 &lt;/pre&gt;
 
-&lt;p&gt;Run in consloe php bin/magento setup:upgrade.&lt;/p&gt;
-
-&lt;p&gt;Now you need override links in your Magento 2 Theme from &lt;span style=&#34;color:#6d79de;&#34;&gt;/checkout&lt;/span&gt; to &lt;span style=&#34;color:#6d79de;&#34;&gt;/customcheckout&lt;/span&gt; and &lt;span style=&#34;color:#6d79de;&#34;&gt;/checkout/cart&lt;/span&gt; to &lt;span style=&#34;color:#6d79de;&#34;&gt;/customcheckout/basket&lt;/span&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://cheerymagicsoftware.github.io/images/custom-url-cart-magento-2.png&#34; alt=&#34;Custom Url Cart in Magento 2&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://cheerymagicsoftware.github.io/images/custom-url-checkout-magento-2.png&#34; alt=&#34;Custom Url Checkout in Magento 2&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This module isn&amp;rsquo;t a universal solution, and is given as a way to solve the problem or how to work with the routers and plugins in Magento 2. It is also possible that the module may conflict with your installed modules. This module can be &lt;a target=&#34;_blank&#34; class=&#34;magento2-link&#34; href=&#34;https://github.com/cheerymagicsoftware/CustomCheckout&#34;&gt;downloaded &lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s all. I hope, the widget will be useful.
+&lt;a href=&#34;https://github.com/cheerymagicsoftware/Yii1ReCaptcha2&#34;&gt;Download&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
