@@ -1,0 +1,298 @@
+  <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title> Google reCAPTCHA V2 widget for Yii Framework 1. &middot; Cheerymagicsoftware official page </title>
+    <meta name="keywords" content="[Yii Framework, Php Development, widget, Yii 1, Google ReCaptcha v2] ">
+    <meta name="description" content="Yii Development. Description reCAPTCHA V2 widget for Yii Framework 1.">
+    <meta name="robots" content="all" />
+    <meta http-equiv="content-script-type" content="text/javascript" />
+    <meta http-equiv="content-language" content="en" />
+    <meta name="language" content="en" />
+
+
+    
+    <link rel="stylesheet" type="text/css" href="https://cheerymagicsoftware.github.io//css/uno.min.css" />
+    
+    
+    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Cheerymagicsoftware official page" />
+    
+    <script src="https://cheerymagicsoftware.github.io//js/jquery.min.js"></script>
+    <script src="https://cheerymagicsoftware.github.io//js/main.min.js"></script>
+
+    
+    <script src="https://cheerymagicsoftware.github.io//js/rainbow-custom.min.js"></script>
+    
+    
+    
+    <script>
+        if (window.location.hostname != "127.0.0.1")
+        {
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-92531543-1', 'auto');
+            ga('send', 'pageview');
+        }
+
+    </script>
+    
+</head>
+
+  <body>
+    <div id="scriptHeader">
+    <span class="mobile btn-mobile-menu">
+            <i class="fa fa-bars btn-mobile-menu__icon"></i>
+            <i class="fa fa-times btn-mobile-close__icon hidden"> </i>
+    </span>
+    <header class="
+        
+            panel-cover panel-cover--collapsed
+        "  style="background-image: url(/images/php_code.png)" >
+    <div class="panel-main">
+        <div class="panel-main__inner panel-inverted">
+            <div class="panel-main__content"> 
+                <h1 class="panel-cover__title panel-title">
+                    <a href="https://cheerymagicsoftware.github.io//"  title="link to homepage for Cheerymagicsoftware official page">Cheerymagicsoftware official page</a>
+                </h1>
+                <hr class="panel-cover__divider" />
+                <p class="panel-cover__description">  Programming is a cheery magic!  </p>
+                <hr class="panel-cover__divider panel-cover__divider--secondary" />
+                <div class="navigation-wrapper">
+                    <nav class="cover-navigation cover-navigation--primary">
+                        <ul class="navigation">
+                            <li class="navigation__item"><a href="https://cheerymagicsoftware.github.io/#blog" title="link to Cheerymagicsoftware official page blog" class="blog-button">Blog</a> </li></br>
+                            <li class="navigation__item"><a href="https://cheerymagicsoftware.github.io//about-us" title="link to Cheerymagicsoftware official page blog" class="blog-button">About Us</a> </li></br>
+                            
+                            
+                       </ul>
+                    </nav> <nav class="cover-navigation navigation--social">
+    <ul class="navigation">    </br>    </ul>
+</nav>
+ </div>
+            </div>
+        </div>
+        <div class="panel-cover--overlay"></div>
+    </div>
+</header>
+</div>
+<noscript>
+    <style>
+        #scriptHeader {display:none;}
+        .navigation-wrapper{
+            display: block;
+            top: 0;
+        }
+    </style>
+
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/php_code.png)">
+        <div class="panel-main">
+            <div class="panel-main__inner panel-inverted">
+                <div class="panel-main__content"> 
+                    <h1 class="panel-cover__title panel-title">
+                        <a href="https://cheerymagicsoftware.github.io//"  title="link to homepage for Cheerymagicsoftware official page">Cheerymagicsoftware official page</a>
+                    </h1>
+                    <hr class="panel-cover__divider" />
+                    <p class="panel-cover__description">  This site is built using <a href="http://gohugo.io">hugo</a> and the theme is built by <a href="http://fredrikloch.me">Fredrik</a> if you enjoy it, it is available at <a href="https://github.com/SenjinDarashiva/hugo-uno">github</a>  </p>
+                    <hr class="panel-cover__divider panel-cover__divider--secondary" />
+                    <div class="navigation-wrapper">
+                        <nav class="cover-navigation cover-navigation--primary">
+                            <ul class="navigation">
+                                <li class="navigation__item"><a href="https://cheerymagicsoftware.github.io//#blog" title="link to Cheerymagicsoftware official page blog" class="blog-button">Blog</a> </li></br>
+                                
+                                
+                           </ul>
+                        </nav> <nav class="cover-navigation navigation--social">
+    <ul class="navigation">    </br>    </ul>
+</nav>
+ </div>
+                </div>
+            </div>
+            <div class="panel-cover--overlay"></div>
+        </div>
+    </header>
+</noscript>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <div class="post">
+          <h1>Google reCAPTCHA V2 widget for Yii Framework 1.</h1>
+          <span class="post-date">Fri, Oct 13, 2017</span>
+          <p>Recently we needed integrate recaptcha to login and registration forms. Project was on Yii 1 framework.
+These forms were show in defferent modal windows. All most realized widgets reCaptcha v2 for Yii1 were for &ldquo;single form&rdquo; mode with tag.
+And we decided to fix the situation - create the universal widget.</p>
+
+<p>In official <a href="https://developers.google.com/recaptcha/docs/display">docs</a> google reCaptcha has 2 method for render widget: onload and explicit.
+Standart render &ldquo;onload&rdquo; in tag with class &lsquo;g-recaptcha&rsquo; (1):</p>
+
+<pre>
+
+    <code class="language-php">    &lt;?php
+
+    Yii::import('application.extensions.reCaptcha2.SReCaptcha');
+    $this->widget('SReCaptcha',
+      [
+            'name' => 'reCaptcha', 
+            'siteKey' => Yii::app()->params['reCaptcha2PublicKey'], 
+            'widgetOptions' => ['class' => 'col-lg-3'],
+            'theme' => SReCaptcha::THEME_DARK,
+            'size' => SReCaptcha::SIZE_COMPACT,
+            'jsCallback' => 'console.log("reCaptcha is ready!");console.log(response);',
+            'jsExpiredCallback' => 'console.log("reCaptcha is expired!");'
+      ]
+    );</code>
+
+</pre>
+
+<p>Description:
+name - Prefer use name like &ldquo;reCaptcha&rdquo; and this is required parameter.
+siteKey - Public key reCaptcha and this is required parameter.
+widgetOptions - Additional html widget options, such as <code>class</code>.
+theme - Recaptcha themes (dark or light).
+size - Recaptcha size (normal or compact).
+jsCallback - Will call js code after successfull captcha response. Parameter &ldquo;response&rdquo; is the key (g-recaptcha-response) will be send to verify server.
+jsExpiredCallback - Js code if reCaptcha is expired.</p>
+
+<p>Ok. Code Example if you want use captcha in Active Form with model (2):</p>
+
+<pre>
+
+    <code class="language-php">    &lt;?php
+
+    $form->widget('application.extensions.reCaptcha2.SReCaptcha',
+        [
+            'name' => 'reCaptcha', //is requred
+            'siteKey' => Yii::app()->params['reCaptcha2PublicKey'], //is requred
+            'model' => $model,
+            //'attribute' => 'reCaptcha' //if we use model name equal attribute or customize attribute
+        ]
+    );</code>
+
+</pre>
+
+<p>You may use params like descripted above (1).</p>
+
+<p>In case render &ldquo;explicit&rdquo; needed add parameter &lsquo;render&rsquo; and see <a href="https://developers.google.com/recaptcha/docs/display#render_param">params</a> for &ldquo;grecaptcha.render parameters&rdquo;:</p>
+
+<pre>
+    <code class="language-html">
+        <form method="POST" action="/login">
+            LOGIN FORM:
+            Username:<input type="text" name="Login[username]">
+            Password:<input type="password" name="Login[password]">
+            <div id="reCaptchaLogin"></div>
+        </form>
+        
+        <form method="POST" action="/reg">
+            REGISTRATION FORM:
+            Username: <input type="text" name="Reg[username]">
+            Password: <input type="password" name="Reg[password]">
+            Confirm Password: <input type="password" name="Reg[confirm]">
+            <div id="reCaptchaReg"></div>
+        </form></code>
+
+</pre>
+
+<pre>
+
+    <code class="language-php">
+    $this->widget('application.extensions.reCaptcha2.SReCaptcha',
+        [
+            'siteKey' => Yii::app()->params['reCaptcha2PublicKey'],
+            'render' => [
+                'reCaptchaLogin' => [
+                    'callback' => 'console.log("#reCaptchaLogin is ready!");',
+                    'theme' => 'dark',
+                    'expired-callback' => 'console.log("#reCaptchaLogin is expired!");'
+                ],
+                'reCaptchaReg' => [
+                    'size' => 'compact',
+                    'callback' => 'console.log("#reCaptchaReg is ready!");console.log(response);',
+                ]
+            ],
+        ]
+    );
+    </code>
+
+</pre>
+
+<p>And don&rsquo;t forget add validator, for example code for your model:</p>
+
+<pre>
+
+    <code class="language-php">
+    public $reCaptcha;
+   //...
+   
+   public function rules()
+   {
+     return [
+         // ...
+         // secret is required
+         ['reCaptcha', 'application.extensions.reCaptcha2.SReCaptchaValidator', 'secret' => Yii::app()->params['reCaptcha2PrivateKey'],'message' => 'The verification code is incorrect.']
+         // ...
+     ];
+   }</code>
+
+</pre>
+
+<p>Run in consloe php bin/magento setup:upgrade.</p>
+
+<p>Now you need override links in your Magento 2 Theme from <span style="color:#6d79de;">/checkout</span> to <span style="color:#6d79de;">/customcheckout</span> and <span style="color:#6d79de;">/checkout/cart</span> to <span style="color:#6d79de;">/customcheckout/basket</span>.</p>
+
+<p><img src="/images/custom-url-cart-magento-2.png" alt="Custom Url Cart in Magento 2" /></p>
+
+<p><img src="/images/custom-url-checkout-magento-2.png" alt="Custom Url Checkout in Magento 2" /></p>
+
+<p>This module isn&rsquo;t a universal solution, and is given as a way to solve the problem or how to work with the routers and plugins in Magento 2. It is also possible that the module may conflict with your installed modules. This module can be <a target="_blank" class="magento2-link" href="https://github.com/cheerymagicsoftware/CustomCheckout">downloaded </a>.</p>
+
+        </div>
+        <div class="sharing">
+<a href="https://twitter.com/intent/tweet?status=Google%20reCAPTCHA%20V2%20widget%20for%20Yii%20Framework%201.-https%3a%2f%2fcheerymagicsoftware.github.io%2fpost%2fgoogle-recaptcha-v2-widget-for-yii-1%2f" target="_blank" title="Follow me on Twitter" class="twitter">
+<span class="fa fa-twitter-square fa-3x"></span></a>
+<a href="https://www.facebook.com/sharer/sharer.php?src=https%3a%2f%2fcheerymagicsoftware.github.io%2fpost%2fgoogle-recaptcha-v2-widget-for-yii-1%2f" target="_blank" title="Join me on Facebook" class="facebook">
+<span class="fa fa-facebook-square fa-3x"></span></a>
+<a href="https://plus.google.com/share?url=https%3a%2f%2fcheerymagicsoftware.github.io%2fpost%2fgoogle-recaptcha-v2-widget-for-yii-1%2f" target="_blank" title="Google+" class="googleplus">
+<span class="fa fa-google-plus-square fa-3x"></span></a>
+<a href="http://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fcheerymagicsoftware.github.io%2fpost%2fgoogle-recaptcha-v2-widget-for-yii-1%2f&title=Google%20reCAPTCHA%20V2%20widget%20for%20Yii%20Framework%201." target="_blank" title="LinkedIn" class="linkedin">
+<span class="fa fa-linkedin-square fa-3x"></span></a>
+<a href="http://www.reddit.com/submit?url=https%3a%2f%2fcheerymagicsoftware.github.io%2fpost%2fgoogle-recaptcha-v2-widget-for-yii-1%2f" target="_blank" title="Reddit" class="reddit"><span class="fa fa-reddit-square fa-3x"></span></a>
+<a href="http://www.stumbleupon.com/submit?url=https%3a%2f%2fcheerymagicsoftware.github.io%2fpost%2fgoogle-recaptcha-v2-widget-for-yii-1%2f" target="_blank" title="StumbleUpon" class="stumbleupon"><span class="fa fa-stumbleupon fa-3x">
+</span></a>
+</div>
+        
+
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+  var disqusUsername = "cheerymagic-official";
+
+  (function() { 
+  var d = document, s = d.createElement('script');
+
+  s.src = '//' + disqusUsername + '.disqus.com/embed.js';
+
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+<a href="http://www.copyscape.com/"><img src="http://banners.copyscape.com/img/copyscape-banner-gray-200x25.png" width="200" height="25" border="0" alt="Protected by Copyscape" title="Protected by Copyscape Plagiarism Checker - Do not copy content from this page." /></a>
+
+      </div>
+    </div>
+
+  </body>
+  
+</html>
