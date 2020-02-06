@@ -7,12 +7,39 @@
     <language>en-us</language>
     
     
-    <updated>Mon, 10 Jun 2019 16:54:58 IDT</updated>
+    <updated>Sat, 01 Feb 2020 12:21:20 EET</updated>
+    
+    <item>
+      <title>About us</title>
+      <link>https://cheerymagicsoftware.github.io/about-us/</link>
+      <pubDate>Sat, 01 Feb 2020 12:21:20 EET</pubDate>
+      
+      <guid>https://cheerymagicsoftware.github.io/about-us/</guid>
+      <description>&lt;p&gt;We are group of backend php developers.
+Currently we have some projects, but we can spend our time for remote projects in freelance part time.
+We are situated in Ukraine.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Our specialization:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Backend:&lt;br&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;PHP&lt;/strong&gt;: Magento 2, Yii, Yii 2,  Joomla CMS, PrestaShop, Kohana, Plain PHP.&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Web Solutions:&lt;/strong&gt;
+Laravel, E-stores, Real Estate Sites,  Payment system integranion, FaceBook applications, Business card sites, Mobile Web Applications, REST API, Sphinx&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Work with Frontend:&lt;br&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;VueJS, JQuery, jQuery Mobile, JS templite frameworks, AJAX, CSS, Responsive Design, Twitter Bootstrap&lt;/p&gt;
+
+&lt;p&gt;We are happy to answer your questions. &lt;a href=&#34;mailto:cheerymagicsoftware@gmail.com&#34;&gt;cheerymagicsoftware@gmail.com&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>PAYONEER: ALL-IN-ONE PLATFORM FOR GLOBAL GROWTH</title>
       <link>https://cheerymagicsoftware.github.io/post/powerful-tool-payoneer/</link>
-      <pubDate>Mon, 10 Jun 2019 16:54:58 IDT</pubDate>
+      <pubDate>Mon, 10 Jun 2019 16:54:58 EEST</pubDate>
       
       <guid>https://cheerymagicsoftware.github.io/post/powerful-tool-payoneer/</guid>
       <description>&lt;p&gt;Get paid for work done is naturally. But if your clients from different places in the world. You need an international powerful tool to get and receive money.
@@ -189,7 +216,7 @@ jsExpiredCallback - Js code if reCaptcha is expired.&lt;/p&gt;
     <item>
       <title>Custom url for checkout and cart in Magento 2</title>
       <link>https://cheerymagicsoftware.github.io/post/custom-url-for-checkout-and-cart/</link>
-      <pubDate>Wed, 15 Mar 2017 14:49:48 IST</pubDate>
+      <pubDate>Wed, 15 Mar 2017 14:49:48 EET</pubDate>
       
       <guid>https://cheerymagicsoftware.github.io/post/custom-url-for-checkout-and-cart/</guid>
       <description>&lt;p&gt;Suppose you need change checkout&amp;rsquo;s url  (&lt;span style=&#34;color:#6d79de;&#34;&gt;/checkout&lt;/span&gt; to &lt;span style=&#34;color:#6d79de;&#34;&gt;/customcheckout&lt;/span&gt;)  and cart (&lt;span style=&#34;color:#6d79de;&#34;&gt;/checkout/cart&lt;/span&gt; to &lt;span style=&#34;color:#6d79de;&#34;&gt;/customcheckout/basket&lt;/span&gt;)  in Magento 2 shop. The first thing that comes to mind use Url Rewrite Module (Admin-&amp;gt;Marketing-&amp;gt;Url Rewrites)&lt;/p&gt;
@@ -519,7 +546,7 @@ jsExpiredCallback - Js code if reCaptcha is expired.&lt;/p&gt;
     <item>
       <title>Magento 2 Repositories and Factories</title>
       <link>https://cheerymagicsoftware.github.io/post/mage-2-repositories-and-facktories/</link>
-      <pubDate>Fri, 03 Mar 2017 14:52:12 IST</pubDate>
+      <pubDate>Fri, 03 Mar 2017 14:52:12 EET</pubDate>
       
       <guid>https://cheerymagicsoftware.github.io/post/mage-2-repositories-and-facktories/</guid>
       <description>&lt;p&gt;As a continuation of the previous &lt;a href=&#34;https://cheerymagicsoftware.github.io/post/mage-2-eav/&#34;&gt;post&lt;/a&gt;, let&amp;rsquo;s talk about repositories and factories.  Many entities in Magento 2 such as the product, category customer, address, quote, order, and others  for &amp;ldquo;CRUD&amp;rdquo; operation, better use of the repository and factory. If the version of Magento 2.1 to be able to work directly with the methods AbstractModel load, save, delete:&lt;/p&gt;
@@ -594,7 +621,7 @@ jsExpiredCallback - Js code if reCaptcha is expired.&lt;/p&gt;
     <item>
       <title>EAV (Entity-Attribute-Value) entity attributes in Magento 2.</title>
       <link>https://cheerymagicsoftware.github.io/post/mage-2-eav/</link>
-      <pubDate>Tue, 28 Feb 2017 14:20:23 IST</pubDate>
+      <pubDate>Tue, 28 Feb 2017 14:20:23 EET</pubDate>
       
       <guid>https://cheerymagicsoftware.github.io/post/mage-2-eav/</guid>
       <description>&lt;p&gt;In conventional systems, we&amp;rsquo;ve learned that to add new attributes in entity we follow the classical route. In the table of our entity, we just add the field with value of our new attribute, describe it in the model and use.&lt;/p&gt;
@@ -829,33 +856,6 @@ php bin/magento setup:upgrade&lt;/p&gt;
 &lt;a class=&#34;magento2-link&#34; href=&#34;http://devdocs.magento.com/guides/v2.0/extension-dev-guide/attributes.html&#34;&gt;
     &lt;a href=&#34;http://devdocs.magento.com/guides/v2.0/extension-dev-guide/attributes.html&#34;&gt;http://devdocs.magento.com/guides/v2.0/extension-dev-guide/attributes.html&lt;/a&gt;
 &lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>About us</title>
-      <link>https://cheerymagicsoftware.github.io/about-us/</link>
-      <pubDate>Tue, 28 Feb 2017 12:21:20 IST</pubDate>
-      
-      <guid>https://cheerymagicsoftware.github.io/about-us/</guid>
-      <description>&lt;p&gt;We are group of backend php developers.
-Currently we have some projects, but we can spend our time for remote projects in freelance part time.
-We are situated in Ukraine.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Our specialization:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Backend:&lt;br&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;PHP&lt;/strong&gt;: Magento 2, Yii, Yii 2,  Joomla CMS, PrestaShop, Kohana, Plain PHP.&lt;br&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Web Solutions:&lt;/strong&gt;
-E-stores, Real Estate Sites,  Payment system integranion, FaceBook applications, Business card sites, Mobile Web Applications, REST API, Sphinx&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Work with Frontend:&lt;br&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;JQuery, jQuery Mobile, JS templite frameworks, AJAX, CSS, Responsive Design, Twitter Bootstrap&lt;/p&gt;
-
-&lt;p&gt;We are happy to answer your questions. &lt;a href=&#34;mailto:cheerymagicsoftware@gmail.com&#34;&gt;cheerymagicsoftware@gmail.com&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
