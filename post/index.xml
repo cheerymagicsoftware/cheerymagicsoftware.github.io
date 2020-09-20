@@ -63,7 +63,8 @@ When you start selling on eBay you have limited 10 items and 500$ per month. &lt
       <pubDate>Fri, 13 Oct 2017 16:43:48 &#43;0200</pubDate>
       
       <guid>https://cheerymagicsoftware.github.io/post/google-recaptcha-v2-widget-for-yii-1/</guid>
-      <description>&lt;p&gt;Recently we needed integrate recaptcha to login and registration forms. Project was on Yii 1 framework.
+      <description>&lt;p&gt;Author &lt;a href=&#39;mailto:volodymyr.poliakov4@gmail.com&#39;&gt;Poliakov Vladimir&lt;/a&gt;.&lt;br&gt;
+Recently we needed integrate recaptcha to login and registration forms. Project was on Yii 1 framework.
 These forms were show in defferent modal windows. All most realized widgets reCaptcha v2 for Yii1 were for &amp;ldquo;single form&amp;rdquo; mode with tag.
 And we decided to fix the situation - create the universal widget.&lt;/p&gt;
 
@@ -192,7 +193,8 @@ jsExpiredCallback - Js code if reCaptcha is expired.&lt;/p&gt;
       <pubDate>Wed, 15 Mar 2017 14:49:48 EET</pubDate>
       
       <guid>https://cheerymagicsoftware.github.io/post/custom-url-for-checkout-and-cart/</guid>
-      <description>&lt;p&gt;Suppose you need change checkout&amp;rsquo;s url  (&lt;span style=&#34;color:#6d79de;&#34;&gt;/checkout&lt;/span&gt; to &lt;span style=&#34;color:#6d79de;&#34;&gt;/customcheckout&lt;/span&gt;)  and cart (&lt;span style=&#34;color:#6d79de;&#34;&gt;/checkout/cart&lt;/span&gt; to &lt;span style=&#34;color:#6d79de;&#34;&gt;/customcheckout/basket&lt;/span&gt;)  in Magento 2 shop. The first thing that comes to mind use Url Rewrite Module (Admin-&amp;gt;Marketing-&amp;gt;Url Rewrites)&lt;/p&gt;
+      <description>&lt;p&gt;Author &lt;a href=&#39;mailto:volodymyr.poliakov4@gmail.com&#39;&gt;Poliakov Vladimir&lt;/a&gt;.&lt;br&gt;
+Suppose you need change checkout&amp;rsquo;s url  (&lt;span style=&#34;color:#6d79de;&#34;&gt;/checkout&lt;/span&gt; to &lt;span style=&#34;color:#6d79de;&#34;&gt;/customcheckout&lt;/span&gt;)  and cart (&lt;span style=&#34;color:#6d79de;&#34;&gt;/checkout/cart&lt;/span&gt; to &lt;span style=&#34;color:#6d79de;&#34;&gt;/customcheckout/basket&lt;/span&gt;)  in Magento 2 shop. The first thing that comes to mind use Url Rewrite Module (Admin-&amp;gt;Marketing-&amp;gt;Url Rewrites)&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://cheerymagicsoftware.github.io/images/add-new-url-rewrite-magento-2.png&#34; alt=&#34;Add url rewrite in Magento 2&#34; /&gt;&lt;/p&gt;
 
@@ -522,7 +524,8 @@ jsExpiredCallback - Js code if reCaptcha is expired.&lt;/p&gt;
       <pubDate>Fri, 03 Mar 2017 14:52:12 EET</pubDate>
       
       <guid>https://cheerymagicsoftware.github.io/post/mage-2-repositories-and-facktories/</guid>
-      <description>&lt;p&gt;As a continuation of the previous &lt;a href=&#34;https://cheerymagicsoftware.github.io/post/mage-2-eav/&#34;&gt;post&lt;/a&gt;, let&amp;rsquo;s talk about repositories and factories.  Many entities in Magento 2 such as the product, category customer, address, quote, order, and others  for &amp;ldquo;CRUD&amp;rdquo; operation, better use of the repository and factory. If the version of Magento 2.1 to be able to work directly with the methods AbstractModel load, save, delete:&lt;/p&gt;
+      <description>&lt;p&gt;Author &lt;a href=&#39;mailto:volodymyr.poliakov4@gmail.com&#39;&gt;Poliakov Vladimir&lt;/a&gt;.&lt;br&gt;
+As a continuation of the previous &lt;a href=&#34;https://cheerymagicsoftware.github.io/post/mage-2-eav/&#34;&gt;post&lt;/a&gt;, let&amp;rsquo;s talk about repositories and factories.  Many entities in Magento 2 such as the product, category customer, address, quote, order, and others  for &amp;ldquo;CRUD&amp;rdquo; operation, better use of the repository and factory. If the version of Magento 2.1 to be able to work directly with the methods AbstractModel load, save, delete:&lt;/p&gt;
 
 &lt;pre&gt;
 
@@ -597,7 +600,8 @@ jsExpiredCallback - Js code if reCaptcha is expired.&lt;/p&gt;
       <pubDate>Tue, 28 Feb 2017 14:20:23 EET</pubDate>
       
       <guid>https://cheerymagicsoftware.github.io/post/mage-2-eav/</guid>
-      <description>&lt;p&gt;In conventional systems, we&amp;rsquo;ve learned that to add new attributes in entity we follow the classical route. In the table of our entity, we just add the field with value of our new attribute, describe it in the model and use.&lt;/p&gt;
+      <description>&lt;p&gt;Author &lt;a href=&#39;mailto:volodymyr.poliakov4@gmail.com&#39;&gt;Poliakov Vladimir&lt;/a&gt;.&lt;br&gt;
+In conventional systems, we&amp;rsquo;ve learned that to add new attributes in entity we follow the classical route. In the table of our entity, we just add the field with value of our new attribute, describe it in the model and use.&lt;/p&gt;
 
 &lt;p&gt;If  we&amp;rsquo;ll go the classic way in Magento and add fields to the tables of entities, then we have a lot of work - this is use in search, display in the frontend, display in the admin backend (grids and edit mode) and so on. Accordingly, the possible bugs in the work.&lt;/p&gt;
 
